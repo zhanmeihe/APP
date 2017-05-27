@@ -1,6 +1,6 @@
 package com.service.TestCollect.dao;
 
-import java.io.Serializable;
+ 
 
  
 
