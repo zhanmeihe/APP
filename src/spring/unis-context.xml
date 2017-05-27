@@ -11,7 +11,7 @@
        	http://www.springframework.org/schema/tx 
        	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
        	
-	<context:component-scan base-package="com.xiubo.*"/>  
+	<context:component-scan base-package="com.zhan.*"/>  
 	
 	<context:property-placeholder location="classpath:dataSource.xiubo.properties" 
 		ignore-unresolvable="true" />
@@ -20,8 +20,8 @@
 	<import resource="classpath:dataSource.xml"/>
 	<import resource="classpath:spring/job.xml"/>
 	
-	<bean class="com.xiubo.framework.BeanFactory" />
-
+	<!-- <bean class="com.app.framework.BeanFactory" />
+ -->
 	<!-- Transaction -->
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -38,12 +38,12 @@
 	</bean>
 	
 	<!-- dao beans -->
-	<import resource="classpath*:com/xiubo/service/Common-DaoBeans.xml" />
-	<import resource="classpath*:com/xiubo/web/Web-DaoBeans.xml" />
+	<import resource="classpath*:Common-DaoBeans.xml" />
+	<import resource="classpath*:Web-DaoBeans.xml" />
 	
 	
-	<bean id="currentTimeProvider" class="com.xiubo.framework.CurrentTimeProvider" />
-	
+ <bean id="currentTimeProvider" class="com.app.framework.CurrentTimeProvider" />
+ 
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<property name="messageConverters">
 			<list>

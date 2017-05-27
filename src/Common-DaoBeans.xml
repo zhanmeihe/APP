@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- dao beans -->
+<!-- 
+	<bean id="userInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.user.dao.UserInfoDao" />
+	</bean>
+
+	<bean id="userAppInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.user.dao.UserAppInfoDao" />
+	</bean>
+	
+	<bean id="skipActionDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.SkipActionDao" />
+	</bean>
+	
+	<bean id="verifyPerDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.VerifyPerDao" />
+	</bean>
+	
+	<bean id="userReportDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.video.dao.UserReportDao" />
+	</bean>
+
+	<bean id="videoInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.video.dao.VideoInfoDao" />
+	</bean>
+	
+	<bean id="exchangeDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.ExchangeDao" />
+	</bean>
+
+	<bean id="userFocusRelationDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface"
+			value="com.xiubo.service.user.dao.UserFocusRelationDao" />
+	</bean>
+
+	<bean id="videoZanRelationDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface"
+			value="com.xiubo.service.video.dao.VideoZanRelationDao" />
+	</bean>
+
+	<bean id="videoReportDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.video.dao.VideoReportDao" />
+	</bean>
+
+	<bean id="videoFreeUserDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface"
+			value="com.xiubo.service.video.dao.VideoFreeUserDao" />
+	</bean>
+
+
+	<bean id="tradingAccountDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.trading.dao.TradingAccountDao" />
+	</bean>
+	
+	<bean id="tradingRequestDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.trading.dao.TradingRequestDao" />
+	</bean>
+	
+	<bean id="smsCodeDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.user.dao.SmsCodeDao" />
+	
+	</bean>
+	
+	<bean id="userFeedbackDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.user.dao.UserFeedbackDao" />
+	
+	</bean>
+
+	
+	<bean id="parameterDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.common.dao.ParameterDao" />
+	</bean>
+
+	<bean id="recommendUserDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.web.content.dao.RecommendUserDao" />
+	</bean>
+	
+	<bean id="recommendAppDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.user.dao.RecommendAppDao" />
+	</bean>
+	
+	<bean id="recommendHotStarDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.user.dao.RecommendHotStarDao" />
+	</bean>
+	
+	<bean id="diamondsGiftRuleDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.trading.dao.DiamondsGiftRuleDao" />
+	</bean>
+	
+	 <bean id="funnySongDao" class  ="org.springframework.orm.ibatis3.MapperFactoryBean">
+	 <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	 <property name="mapperInterface" value="com.xiubo.service.trading.dao.FunnySongDao"/>
+	 </bean>
+	
+	 <bean id="sysDateDao" class  ="org.springframework.orm.ibatis3.MapperFactoryBean">
+	 <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	 <property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.SysDateDao"/>
+	 </bean>
+	
+	 <bean id="userLoginDao" class  ="org.springframework.orm.ibatis3.MapperFactoryBean">
+	 <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	 <property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.UserLoginDao"/>
+	 </bean>
+	
+	<bean id="diamondsPriceRuleDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.trading.dao.DiamondsPriceRuleDao" />
+	</bean>
+	
+	<bean id="announceInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.announce.dao.AnnounceInfoDao" />
+	</bean>
+	
+	<bean id="fwExperienceLevelDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.level.dao.FwExperienceLevelDao" />
+	</bean>
+	
+	<bean id="userExperienceDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.level.dao.UserExperienceDao" />
+	</bean>
+	
+	<bean id="loginEventDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.LoginEventDao" />
+	</bean>
+	
+	<bean id="previewDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.PreviewDao" />
+	</bean>
+	
+	<bean id="verifyDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.dianduidian.dao.VerifyDao" />
+	</bean>
+	
+	
+	  华丽丽的分割线
+	单檬  im 即时通讯dao bean
+	
+	 <bean id="userimInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.user.dao.UserimInfoDao" />
+	</bean>
+	
+	<bean id="tradimAccountDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.TradimAccountDao" />
+	</bean>
+	
+	
+	<bean id="smsimCodeDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.smsim.dao.SmsimCodeDao" />
+	</bean>
+	
+	
+	<bean id="privateSetingDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.privateletter.dao.PrivateSetingDao" />
+	</bean>
+	
+	<bean id="userFocusImDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.Attention.dao.UserFocusImDao" />
+	</bean>
+	
+	<bean id="userimReportDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.user.dao.UserimReportDao" />
+	</bean>
+	
+	
+	
+	<bean id="wangyiyunDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.wangyiyun.dao.WangyiyunDao" />
+	</bean>
+	
+	<bean id="blackListImDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.wangyiyun.dao.BlackListImDao" />
+	</bean>
+	
+	<bean id="tradimRequestDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.TradimRequestDao" />
+	</bean>
+		
+		
+	<bean id="parameterImDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.sys.dao.ParameterImDao" />
+	 
+	</bean>
+	<bean id="tradingImRequestDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.aliPay.dao.TradingImRequestDao" />
+	</bean>
+	
+	<bean id="detailsInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.details.dao.DetailsDao" />
+	</bean>
+	
+	<bean id="friendCircleDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.friendcircle.dao.FriendCircleDao" />
+	</bean>
+	
+	<bean id="ZanFriendCircleDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.friendcircle.dao.ZanFriendCircleDao" />
+	</bean>
+	
+	<bean id="smsSendTotalCodeDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.smsim.dao.SmsSendTotalCodeDao" />
+	</bean>
+	
+	<bean id="HuiFuFriendCircleDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.friendcircle.dao.HuiFuFriendCircleDao" />
+	</bean>
+	
+	<bean id="PingLunFriendCircleDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.friendcircle.dao.PingLunFriendCircleDao" />
+	</bean>
+	
+	<bean id="FriendCircleMessagesDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.friendcircle.dao.FriendCircleMessagesDao" />
+	</bean>
+	
+	
+	<bean id="giftPayDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.GiftPayDao" />
+	</bean>
+	
+	<bean id="loginOutUserDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.LoginOutUserDao" />
+	</bean>
+	
+	<bean id="loginUserDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.LoginUserDao" />
+	</bean>
+	
+	<bean id="sendMessageNumDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.message.dao.SendMessageNumDao" />
+	</bean>
+	
+	<bean id="voiceTotalDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.VoiceTotalDao" />
+	</bean>
+	
+	<bean id="startImgDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.sys.dao.StartImgDao" />
+	</bean>
+	
+	<bean id="RedPacketSkinDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.redPacketSkin.dao.RedPacketSkinDao" />
+	</bean>
+	
+	<bean id="videoTotalDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.VideoTotalDao" />
+	</bean>
+	
+	<bean id="hourprivateltterDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.xiubo.service.im.trad.dao.HourprivateltterDao" />
+	</bean> -->
+</beans>
+	
