@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.xiubo.service.im.sys.dao.StartImgDao" >
+	
+  <resultMap id="BaseResultMap" type="com.xiubo.service.im.sys.StartImg" >
+	<result column="ID" property="id" />
+	<result column="START_IMG_URL" property="startImgUrl" />
+	<result column="SKIP" property="skip" />
+	<result column="TYPE" property="type" />
+	 
+  </resultMap>
+  
+  <select id="findAll" resultMap="BaseResultMap" parameterType="String" >
+    select ID,START_IMG_URL,SKIP,TYPE 
+    from START_IMG
+    where
+			SKIP = 1 and TYPE = 1
+	  </select>
+	  
+	   <select id="findh5" resultMap="BaseResultMap" parameterType="String" >
+     SELECT ID,START_IMG_URL,SKIP,TYPE 
+    FROM START_IMG
+    WHERE
+			SKIP = 0 AND TYPE = 1 ORDER BY RAND() DESC LIMIT 1
+	  </select>
+	  
+	 
+</mapper>
