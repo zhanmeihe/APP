@@ -65,7 +65,7 @@
 	<mvc:resources mapping="/voice/**" location="/voice/" />
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="com.xiubo.*"
+	<context:component-scan base-package="com.service.*"
 		annotation-config="true">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
