@@ -3,6 +3,9 @@ package com.service.TestCollect;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -40,11 +43,11 @@ public class DoMainController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/unis/NeteaseLive", method = RequestMethod.GET, produces = "application/json")
-	public CommonResponse GetVideo() {
+	public CommonResponse GetVideo(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String url = "http://data.live.126.net/livechannel/previewlist.json 汇总";
 
-			List<News> bd = GetNeteaseLiveList(url);
+			List<News> bd = GetNeteaseLiveList(url,request,response);
 
 			return new CommonSuccessResponse(bd);
 
@@ -57,11 +60,11 @@ public class DoMainController {
 	}
 	
 	@RequestMapping(value = "/unis/NeteaseLive/app-htm", method = RequestMethod.GET)
-	public String GetVideoapp(Model model) {
+	public String GetVideoapp(Model model,HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String url = "http://data.live.126.net/livechannel/previewlist.json 汇总";
 
-			List<News> bd = GetNeteaseLiveList(url);
+			List<News> bd = GetNeteaseLiveList(url,request,response);
 			model.addAttribute("data-app", bd);
 
 			return "app-h";
@@ -74,7 +77,7 @@ public class DoMainController {
 		return "";
 	}
 
-	public static List<News> GetNeteaseLiveList(String por) {
+	public static List<News> GetNeteaseLiveList(String por,HttpServletRequest request, HttpServletResponse response) {
 
 		List<News> nsn = new ArrayList<News>();
 		News ns = new News();
@@ -204,7 +207,7 @@ public class DoMainController {
 	}
 
 	public static void main(String[] args) {
-		GetNeteaseLiveList("http://data.live.126.net/livechannel/previewlist.json 汇总");
+		//GetNeteaseLiveList("http://data.live.126.net/livechannel/previewlist.json 汇总");
 
 		/**
 		 * 房间id：134251 房间名：【点掌财经】昨天你又错过了一个交易机会 直播说明：俗话说，百日横盘成大牛，意思是“横有多长，竖有多长”。
