@@ -9,6 +9,7 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,9 +33,9 @@ public class DoMainController {
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(DoMainController.class);
 
-	
 	/**
 	 * 网易直播URL抓取
+	 * 
 	 * @return
 	 */
 	@ResponseBody
@@ -46,13 +47,31 @@ public class DoMainController {
 			List<News> bd = GetNeteaseLiveList(url);
 
 			return new CommonSuccessResponse(bd);
-			
+
 		} catch (UnisException e) {
 			LOGGER.info("异常", e);
 		} catch (Exception e) {
 			LOGGER.info("异常", e);
 		}
 		return new SystemErrorResponse();
+	}
+	
+	@RequestMapping(value = "/unis/NeteaseLive/app-htm", method = RequestMethod.GET)
+	public String GetVideoapp(Model model) {
+		try {
+			String url = "http://data.live.126.net/livechannel/previewlist.json 汇总";
+
+			List<News> bd = GetNeteaseLiveList(url);
+			model.addAttribute("data-app", bd);
+
+			return "app-h";
+
+		} catch (UnisException e) {
+			LOGGER.info("异常", e);
+		} catch (Exception e) {
+			LOGGER.info("异常", e);
+		}
+		return "";
 	}
 
 	public static List<News> GetNeteaseLiveList(String por) {
@@ -81,7 +100,7 @@ public class DoMainController {
 					String detailurl = "http://data.live.126.net/liveAll/"
 							+ roomId + ".json";
 					String videodata = Tools.source(detailurl, "utf-8");
-					Thread.sleep(2000);
+//					Thread.sleep(2000);
 					JSONObject ob = JSONObject.fromObject(videodata);
 					boolean bannerurl2 = JSONObject.fromObject(ob).containsKey(
 							"banner");
