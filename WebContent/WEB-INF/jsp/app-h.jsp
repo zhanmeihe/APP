@@ -9,7 +9,7 @@
 <title>网易直播</title>
 </head>
 <body>
-<embed src="http://vodw1lyksex.vod.126.net/vodw1lyksex/d8e987d9f76947ebac88218ca05a8adb_1495889893908_1495895893940_6496753-00000.mp4"
+<embed src="https://flv.bn.netease.com/videolib3/1705/25/aNeTb3662/SD/aNeTb3662.flv"
 loop="1" width="350" height="240"  autoplay="false" title="eee">
  
 
