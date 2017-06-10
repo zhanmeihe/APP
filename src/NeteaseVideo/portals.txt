@@ -1,0 +1,16 @@
+http://c.m.163.com/nc/video/list/VBK3JKUIF/y/0-10.html BoBo
+http://v.163.com/special/video_tuijian/?callback=callback_video 推荐
+http://v.163.com/special/video_gaoxiao/?callback=callback_video 搞笑
+http://v.163.com/special/video_news/?callback=callback_video 新闻现场
+http://v.163.com/special/video_bagua/?callback=callback_video 八卦
+http://v.163.com/special/video_lieqi/?callback=callback_video 猎奇
+http://v.163.com/special/video_mengwu/?callback=callback_video 萌物
+http://v.163.com/special/video_person/?callback=callback_video 美女帅哥
+http://v.163.com/special/video_tech/?callback=callback_video 黑科技
+http://v.163.com/special/video_erciyuan/?callback=callback_video 二次元
+http://v.163.com/special/video_army/?callback=callback_video 军武
+http://v.163.com/special/video_fullview/?callback=callback_video 全景
+http://v.163.com/special/video_xiaopin/?callback=callback_video 小品
+http://v.163.com/special/video_music/?callback=callback_video 音乐
+http://v.163.com/special/video_yingshi/?callback=callback_video 影视
+http://v.163.com/special/video_game/?callback=callback_video 游戏
