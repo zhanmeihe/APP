@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -51,7 +52,7 @@ public class DoMainController {
 					saveNeteaseVideo(portal);
 				}
 			}
-			
+
 			return "app-h";
 
 		} catch (UnisException e) {
@@ -60,6 +61,39 @@ public class DoMainController {
 			LOGGER.info("异常", e);
 		}
 		return "";
+	}
+	
+	@RequestMapping( value  = "/unis/show.video.htl/{vid}/.php",method = RequestMethod.GET)
+	public String VideoShow(@PathVariable("vid") String vid,Model model){
+		
+		try {
+			
+			Video vo = videoDao.queryId(vid);
+			
+			model.addAttribute("vidpath",vo);
+			
+			return "netease/Showvideo";
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "";
+	}
+
+	@RequestMapping(value = "/video/netease.py/{PageONE}/{MaxRows}", method = RequestMethod.GET)
+	public String videoList(@PathVariable("PageONE") int PageONE,
+			@PathVariable("MaxRows") int MaxRows, Model model,
+			HttpServletRequest request, HttpServletResponse response) {
+		try {
+			int firstResult = PageONE * MaxRows;
+			List<Video> de = videoDao.querydata(firstResult, MaxRows);
+			model.addAttribute("videolist", de);
+			return "netease/NeteasteVideo";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "";
+
 	}
 
 	public void saveNeteaseVideo(String portal) throws InterruptedException {
@@ -218,7 +252,7 @@ public class DoMainController {
 
 		}
 	}
-	
+
 	public String getNowDate() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
 		return (df.format(new Date()));// new Date()为获取当前系统时间

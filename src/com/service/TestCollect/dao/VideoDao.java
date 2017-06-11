@@ -11,7 +11,7 @@ public interface VideoDao {
 	
 	void create(Video ve);
 	
-	List<Video> querydata();
+	List<Video> querydata(@Param("firstResult") int firstResult, @Param("maxResults") int maxResult);
 	
 	Video queryId(@Param("thirdId") String thirdId);
 	 
