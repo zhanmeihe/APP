@@ -1,6 +1,12 @@
 package com.service.TestCollect.pojo;
 
-public class Video {
+import java.io.Serializable;
+
+public class Video implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1692878949515022983L;
 	private int id;
 	private String name;// 节目名称
 	private String url;// 节目播放地址
