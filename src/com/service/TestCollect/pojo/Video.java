@@ -21,6 +21,15 @@ public class Video implements Serializable {
 	private String actor;// 演员
 	private String director;// 导演
 	private String sysDate;
+	private int num;
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
 
 	public String getSysDate() {
 		return sysDate;
