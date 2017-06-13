@@ -3,14 +3,11 @@ package com.service.TestCollect;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,13 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.service.TestCollect.dao.VideoDao;
 import com.service.TestCollect.pojo.Video;
 import com.service.TestCollect.service.NeteaseVideoService;
 import com.zhan.ex.UnisException;
 import com.zhan.response.CommonResponse;
-import com.zhan.response.CommonSuccessResponse;
 import com.zhan.response.SuccessResponse;
 import com.zhan.response.SystemErrorResponse;
 import com.zhan.utils.CommonUtils;
