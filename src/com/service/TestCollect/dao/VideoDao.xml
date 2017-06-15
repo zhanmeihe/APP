@@ -79,6 +79,13 @@
 		WHERE
 		Web_Site_Id=#{thirdId}
 	</select>
+	
+	<select id="querybool" resultMap="BaseResultMap" parameterType="String">
+		SELECT *
+		FROM netease_video
+		WHERE
+		Web_Site_Id=#{thirdId}
+	</select>
 
 
 	<select id="querytype" resultMap="BaseResultMap" parameterType="String">

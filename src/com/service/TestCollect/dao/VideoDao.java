@@ -19,5 +19,7 @@ public interface VideoDao {
 	List<Video> querytype();
 	
 	Video queryId(@Param("thirdId") String thirdId);
+	
+	boolean querybool(@Param("thirdId") String thirdId);
 	 
 }

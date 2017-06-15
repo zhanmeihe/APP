@@ -93,7 +93,10 @@ function load(){
 			</div>
 			<div>
 				<a href="<%=request.getContextPath()%>/unis/show.video.htl/${ NeteaseArr.progid}/.php" title="${ NeteaseArr.name}"
-					style="color: black;">${ NeteaseArr.name}</a>
+					style="color: ;">${ NeteaseArr.name}</a>
+			</div>
+			<div>
+				<p>更新时间：${ NeteaseArr.sysDate}</p>
 			</div>
 
 
