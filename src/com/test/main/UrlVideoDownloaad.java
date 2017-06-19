@@ -22,7 +22,8 @@ public class UrlVideoDownloaad {
 	
 	  public static void  downLoadFromUrl(String urlStr,String fileName,String savePath) throws IOException{  
 	        URL url = new URL(urlStr);    
-	        HttpURLConnection conn = (HttpURLConnection)url.openConnection();    
+	        long start  = System.currentTimeMillis();
+	        HttpURLConnection conn = (HttpURLConnection)url.openConnection(); 
 	                //设置超时间为3秒  
 	        conn.setConnectTimeout(3*1000);  
 		// 防止屏蔽程序抓取而返回403错误  
@@ -48,7 +49,8 @@ public class UrlVideoDownloaad {
 	        }  
 	  
 	  
-	        System.out.println("info:"+url+" download success");   
+	        long end = System.currentTimeMillis();
+	        System.out.println("info:"+url+" download success"+"耗时为："+(end-start));   
 	  
 	    }  
 	  
@@ -73,8 +75,8 @@ public class UrlVideoDownloaad {
 	  
 	    public static void main(String[] args) {  
 	        try{  
-	            downLoadFromUrl("http://flv4.bn.netease.com/videolib3/1706/10/cQHEY4460/SD/cQHEY4460.flv",
-						"cQHEY4460.flv", "F:/app-video/");  
+	            downLoadFromUrl("http://video.dispatch.tc.qq.com/31229180/e0023lbdqvy.mp4?vkey=A3BDED0867472E77CBE10AC312984C7E0ECB54D102AE67B4CC027C1CD6A4B690802088939436060CB170076C62610F17F82D3F234E33816A42C4C35323BC5FC0C8EC2B16845485EE43A6863E1EF39EEB37D39FF7DA4895791D0D1DEC595A7E0C34FD1ECCAFF64CE7A2B06C8BD0159B72",
+						"cQHEY4460.flv", "/home/zhan/");  
 	        }catch (Exception e) {  
 	            // TODO: handle exception  
 	        }  

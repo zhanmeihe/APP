@@ -31,6 +31,7 @@ public class Test {
 			result = pre.executeQuery();
 			while (result.next())
 				System.out.println("姓名:" + result.getString("PROGNAME"));
+			con.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -42,6 +43,7 @@ public class Test {
 					pre.close();
 				if (con != null)
 					con.close();
+				
 				long end = System.currentTimeMillis();
 				System.err.println("jdbc用时为" + (end - start));
 				System.out.println("数据库连接已关闭！");
