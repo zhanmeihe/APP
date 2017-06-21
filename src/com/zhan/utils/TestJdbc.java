@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
  
 
-public class Test {
+public class TestJdbc {
 
 	public static void jdbc() {
 		long start = System.currentTimeMillis();

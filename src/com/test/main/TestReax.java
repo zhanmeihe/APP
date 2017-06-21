@@ -25,11 +25,11 @@ import com.service.TestCollect.pojo.Video;
 import com.zhan.utils.PropertiesFactory;
 import com.zhan.utils.Tools;
 
-public class Test {
+public class TestReax {
 
 	
 	public static String ProgType = "";
-	public Test() {
+	public TestReax() {
 
 	}
 
