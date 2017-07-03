@@ -89,7 +89,7 @@ function load(){
 
 			<div>
 				<a href="<%=request.getContextPath()%>/unis/show.video.htl/${ NeteaseArr.progid}/.php"><img alt="${NeteaseArr.name }" src="${NeteaseArr.imageUrl }"
-					width="240" height="200"></a>
+					width="280" height="220"></a>
 			</div>
 			<div>
 				<a href="<%=request.getContextPath()%>/unis/show.video.htl/${ NeteaseArr.progid}/.php" title="${ NeteaseArr.name}"

@@ -19,6 +19,7 @@
 		<result column="Director" property="director" />
 		<result column="Sys_Date" property="sysDate" />
 		<result column="numcount" property="num" />
+		<result column="Time_Length" property="timeLength" />
 	</resultMap>
 
 
@@ -28,7 +29,7 @@
 			PARAMETER_S.nextval from dual </selectKey> -->
 
 		insert into netease_video
-		(Web_Site_Id,Video_Title,Web_Url,Description,Adress,Video_Create_Date,Web_Site,Video_Url,Video_Img_Url,Video_Type,Actor,Director,Sys_Date)
+		(Web_Site_Id,Video_Title,Web_Url,Description,Adress,Video_Create_Date,Web_Site,Video_Url,Video_Img_Url,Video_Type,Actor,Director,Sys_Date,Time_Length)
 		values (
 
 		#{ progid, javaType=String,
@@ -61,6 +62,9 @@
 		director, javaType=String,
 		jdbcType=VARCHAR},
 		#{ sysDate,
+		javaType=String,
+		jdbcType=VARCHAR},
+		#{ timeLength,
 		javaType=String,
 		jdbcType=VARCHAR}
 		)

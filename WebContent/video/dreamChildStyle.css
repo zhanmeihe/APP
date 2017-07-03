@@ -16,7 +16,7 @@ ul.rating_small li { display:inline; float: right; }
 
 .box_right { width: 78px; float: right; margin: 5px 1px 3px 0; text-align: right; /*font: normal 10px/11px "Lucida Sans Unicode", Arial, Helvetica;*/ /*color: #666;*/color: #FFF; margin-right:6px;}
 
-.video_box, .video_c_box { float: left;  position: relative; padding: 25px; /*width: 160px; height: 190px;*/width: 280px; height: 255px;}
+.video_box, .video_c_box { float: left;  position: relative; padding: 25px; /*width: 160px; height: 190px;*/width: 285px; height: 260px;}
 
 .video_box a span, .video_box_related a span{
 

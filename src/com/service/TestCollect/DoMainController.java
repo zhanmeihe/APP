@@ -181,6 +181,17 @@ public class DoMainController implements Runnable {
 					System.out.println("图片："
 							+ JSONObject.fromObject(array.get(j)).get("cover")
 									.toString());
+					System.out.println("时长："
+							+ JSONObject.fromObject(array.get(j)).get("length")
+									.toString());
+					String length = JSONObject.fromObject(array.get(j)).get("length")
+							.toString();
+					int a = Integer.parseInt(length)/60;
+					int b = Integer.parseInt(length)%60;
+					String a1 = String.valueOf(a);
+					String b1 = String.valueOf(b);
+					String time = a1+":"+b1;
+					ns.setTimeLength(time);
 					ns.setImageUrl(JSONObject.fromObject(array.get(j))
 							.get("cover").toString());
 					ns.setProgid(JSONObject.fromObject(array.get(j)).get("vid")
@@ -254,6 +265,16 @@ public class DoMainController implements Runnable {
 					System.out.println("网址 ====" + weburl);
 					String imgurl = JSONObject.fromObject(array.get(i))
 							.get("img").toString();
+					System.out.println("时长 ====" + JSONObject.fromObject(array.get(i))
+							.get("playlength").toString());
+					String length = JSONObject.fromObject(array.get(i)).get("playlength")
+							.toString();
+					int aa = Integer.parseInt(length)/60;
+					int bb = Integer.parseInt(length)%60;
+					String a1 = String.valueOf(aa);
+					String b1 = String.valueOf(bb);
+					String time = a1+":"+b1;
+					ns.setTimeLength(time);
 					ns.setImageUrl(imgurl);
 					System.out.println("图片 ====" + imgurl);
 					String vid2 = JSONObject.fromObject(array.get(i))

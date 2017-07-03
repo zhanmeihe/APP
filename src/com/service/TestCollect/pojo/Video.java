@@ -21,6 +21,15 @@ public class Video implements Serializable {
 	private String actor;// 演员
 	private String director;// 导演
 	private String sysDate;
+	private String timeLength;
+	public String getTimeLength() {
+		return timeLength;
+	}
+
+	public void setTimeLength(String timeLength) {
+		this.timeLength = timeLength;
+	}
+
 	private int num;
 
 	public int getNum() {
