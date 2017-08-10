@@ -1,12 +1,11 @@
 package com.test.main;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
-
-import org.apache.commons.io.IOUtils;
 
 public class AA {
 
@@ -14,6 +13,17 @@ public class AA {
 		// TODO Auto-generated constructor stub
 	}
 
+	public   static   void  removeDuplicate(List list)  {
+		   for  ( int  i  =   0 ; i  <  list.size()  -   1 ; i ++ )  {
+		    for  ( int  j  =  list.size()  -   1 ; j  >  i; j -- )  {
+		      if  (list.get(j).equals(list.get(i)))  {
+		        list.remove(j);
+		      } 
+		    } 
+		  } 
+		  System.out.println(list);
+		}
+	
 	public static Timestamp formTime(String timePeriod, Timestamp startTime) {
 		long hh = -1L;
 		long mm = -1L;
@@ -41,11 +51,40 @@ public class AA {
 			return null;
 		}
 	}
-
+	public  static <T> List<T> compare(T[] t1, T[] t2) {
+	    List<T> list1 = Arrays.asList(t1);
+	    List<T> list2 = new ArrayList<T>();
+	    for (T t : t2) {
+	      if (!list1.contains(t)) {
+	        list2.add(t);
+	      }
+	    }
+	    System.out.println(list2.get(0));
+	    return list2;
+	}
 	 
 	public static void main(String[] args) throws IOException {
+	 
 
-		 
+   String tu = "ftp://poster:123456@172.16.80.23:21/images/BST/2017/7/7/77777777880000092017070700000001/f01aaffe-1862-4c52-b2e9-dccfdf8895bd.png";
+	
+   int s = tu.indexOf("@");
+   int e = tu.lastIndexOf(":");
+   String ti = tu.substring(s+1, e);
+    
+   System.out.println(ti);
+   
+//	 
+//			String str="3333ABC_001"; 
+//			if(str.indexOf("ABC")!=-1){  
+//				String f = "1033;1032;";
+//				f = f.substring(0, f.lastIndexOf(";"));
+//			System.out.println("包含"+f); 
+//			}
+//			else{ 
+//				System.out.println("不包含"); 
+//			} 
+//		 
 //		String strSource = "你想要转码的字符串";  
 //		String strSomeEncoding = "GB2312";   //例如utf-8  
 //		strSource = new String (strSource.getBytes(Charset.forName(strSomeEncoding)), strSomeEncoding);  
@@ -57,6 +96,9 @@ public class AA {
 		
 		System.out.println(randomString(-229985452)+' '+randomString(-147909649));
 	}
+	
+	
+	
 	public static String randomString(int seed) {
 	Random rand = new Random(seed);
 	StringBuilder sb = new StringBuilder();

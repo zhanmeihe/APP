@@ -20,7 +20,7 @@ body{ text-align:center}
 		<param name='allowFullScreen' value='true' />
 		<param name='FlashVars'
 			value='vcastr_file=${vidpath.videoPath }&IsAutoPlay=1&IsContinue=0' />
-		<embed style="width: 1300px; height: 650px;"
+		<embed style="width: 750px; height: 400px;"
 			src='<%=request.getContextPath()%>/video/Flvplayer.swf'
 			allowfullscreen='true'
 			flashvars='vcastr_file=${vidpath.videoPath }&IsAutoPlay=1&IsContinue=0'

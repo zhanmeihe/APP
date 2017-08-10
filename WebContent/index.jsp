@@ -7,6 +7,11 @@
 <title>土豆视频</title>
 </head>
 <body>
+	<a target="_blank"
+		href="http://wpa.qq.com/msgrd?v=3&uin=1850765853&site=qq&menu=yes"><img
+		border="0" src="http://wpa.qq.com/pa?p=2:1850765853:51" alt="点击交谈"
+		title="点击交谈" /></a>
+
 	<div class="td-col ">
 		<div class="v-pack">
 			<div class="v-thumb">
@@ -14,7 +19,7 @@
 					src="http://image.uczzd.cn/3702489157869696840.jpeg?id=0&width=212&height=120"
 					alt="《甄嬛传》终于弄明白浣碧出卖甄嬛的原因了，真相让人吃惊" class="v-thumb__pic" />
 				<div class="v-thumb__mask"></div>
-				
+
 				<div class="v-thumb__pos-br">
 					<span class="v-num">06:40</span>
 				</div>
