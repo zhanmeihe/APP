@@ -1,28 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html lang="en">
 <head>
-    
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-    <title>Document</title>
+    <title>注册成功</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-1.10.1.min.js"></script>
     <script src="js/common.js"></script>
 </head>
-<body>
+<body class="bg-succ">
     <div class="index">
-        <div class="g-index-bg">
-            <div class="join"><a href="<%=request.getContextPath()%>/Userinfo/IndexRe.shtml">申请加入</a></div>
-        </div>
-        <div class="g-lj-bottom">
-            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml">抢单</a>
-            <a href="###">施工</a>
-            <a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml">个人中心</a>
+        <div class="g-success">
+            <span class="titile">注册成功</span>
+            <p>工人编号：<span>001</span></p>
+            <p class="name"><span>xxx</span>师傅</p>
+            <div>欢迎加入蚂蚁阿奇</div>
+            <div>施工时必须穿工服</div>
+            <div>领取工服请联系工程负责人</div>
+            <div>姓名：杨增旺</div>
+            <div>电话：17801157396</div>
+            <div class="g-field fanhui-index"><a href="javascript:;">确定</a></div>
         </div>
     </div>
 </body>

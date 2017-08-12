@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html lang="en">
 <head>
-    
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta content="yes" name="apple-mobile-web-app-capable">
@@ -14,15 +15,12 @@
     <script src="js/jquery-1.10.1.min.js"></script>
     <script src="js/common.js"></script>
 </head>
-<body>
+<body class="bg-succ">
     <div class="index">
-        <div class="g-index-bg">
-            <div class="join"><a href="<%=request.getContextPath()%>/Userinfo/IndexRe.shtml">申请加入</a></div>
-        </div>
-        <div class="g-lj-bottom">
-            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml">抢单</a>
-            <a href="###">施工</a>
-            <a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml">个人中心</a>
+        <div class="g-success">
+            <span class="titile">抢单失败</span>
+            <div>原因：工种不符</div>
+            <div class="g-field fanhui-index fail-suc"><a href="javascript:;">确定</a></div>
         </div>
     </div>
 </body>

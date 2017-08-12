@@ -1,5 +1,13 @@
 package com.service.TestCollect;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,16 +30,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.service.TestCollect.dao.VideoDao;
+import com.service.TestCollect.pojo.UserInfo;
 import com.service.TestCollect.pojo.Video;
 import com.service.TestCollect.service.NeteaseVideoService;
+import com.zhan.ex.RuleException;
 import com.zhan.ex.UnisException;
 import com.zhan.response.CommonResponse;
 import com.zhan.response.SuccessResponse;
 import com.zhan.response.SystemErrorResponse;
 import com.zhan.utils.CommonUtils;
 import com.zhan.utils.PropertiesFactory;
+import com.zhan.utils.RegexConst;
 import com.zhan.utils.Tools;
 
 
@@ -159,7 +174,261 @@ public class DoMainController implements Runnable {
 			return "errorpage/error";
 			}
 		}
+	/*
+	 * ,@RequestParam(value = "Sex") String Sex,
+			@RequestParam(value = "PhoneNum") String  PhoneNum,@RequestParam(value = "IdcardNum") String IdcardNum,
+			@RequestParam(value = "YearNum") String YearNum,
+			@RequestParam(value = "WorkType") String WorkType,
+	 */
+	@RequestMapping(value ="/Userinfo/UserRegistr" ,method  = RequestMethod.POST)
+	public String Registr(@RequestParam(value = "UserName") String UserName,
+			@RequestParam(value = "identity") int Sex,
+			@RequestParam(value = "PhoneNum") String  PhoneNum,@RequestParam(value = "IdcardNum") String IdcardNum,
+			@RequestParam(value = "YearNum") String YearNum,
+			@RequestParam(value = "WorkType") String WorkType,
+			HttpServletRequest request, HttpServletResponse response,
+			Model model){
+		try {
+			model.addAttribute("phone", PhoneNum);
+			System.err.println(UserName);
+			System.err.println(Sex);
+			System.err.println(PhoneNum);
+			System.err.println(IdcardNum);
+			System.err.println(YearNum);
+			System.err.println(WorkType);
+			
+			return "ant/idcard";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "";
+	}
 		
+	@RequestMapping(value = "/Userinfo/IndexRe.shtml",method =RequestMethod.GET)
+	public String IndexReg(){
+		try {
+			System.err.println("机智的跳转页面！");
+			return "ant/personal";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/personal";
+	}
+	
+	@RequestMapping(value = "/Userinfo/Idcard.shtml",method =RequestMethod.GET)
+	public String IndexIdcArd(Model model){
+		try {
+			
+//			model.addAttribute("phone", "13521294806");
+			System.err.println("跳转页面！");
+			return "ant/idcard";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/idcard";
+	}
+	
+	@RequestMapping(value = "/Userinfo/orderlist.shtml",method =RequestMethod.GET)
+	public String OrderList(){
+		try {
+			System.err.println("跳转页面！");
+			return "ant/order-list";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/order-list";
+	}
+	
+	@RequestMapping(value = "/Userinfo/PersonalCenter.shtml",method =RequestMethod.GET)
+	public String PersonalCenter(Model model){
+		try {
+			model.addAttribute("phone", "13521294806");
+			System.err.println("跳转页面！");
+			return "ant/personal-center";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/order-list";
+	}
+	
+	
+	@RequestMapping(value = "/Userinfo/ListDetails.shtml",method =RequestMethod.GET)
+	public String ListDetails(){
+		try {
+			System.err.println("跳转页面！");
+			return "ant/order-list-details";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/order-list";
+	}
+	
+	
+	@RequestMapping(value = "/Userinfo/Details.shtml",method =RequestMethod.GET)
+	public String Details(){
+		try {
+			System.err.println("跳转页面！");
+			return "ant/details";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/order-list";
+	}
+	
+	@RequestMapping(value = "/Userinfo/ImageUpage.shtml",method = RequestMethod.POST)
+	public void ImageUp(UserInfo vo){
+		try {
+			
+			ImageUpload(vo);
+			System.err.println("上传成功！");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("上传失败！");
+		}
+		System.out.println("上传成功！");
+	}
+	
+	@RequestMapping(value = "/common/showIcon",method = RequestMethod.GET)
+	public void showIcon(@RequestParam(required = true) String fileName, HttpServletResponse response,
+			HttpServletRequest request) {
+		try {
+			validate(fileName);
+			String filePath = "/home/zhan/ee/" + fileName;
+			request.setAttribute("decorator", "none");
+			setResponse(fileName, response);
+			responseOutputFile(response, filePath, "default_icon.png");
+		} catch (Exception e) {
+			responseError(response, e.getMessage());
+		}
+	}
+
+//	@RequestMapping(value = "/common/showFile")
+//	public void showFile(@RequestParam(required = true) String fileName, HttpServletResponse response,
+//			HttpServletRequest request) {
+//		try {
+//			//validate(fileName);
+//			String filePath = Const.MP3_FILE_URL + fileName;
+//			request.setAttribute("decorator", "none");
+//			setResponse(fileName, response);
+//			responseOutputFile(response, filePath, "noFile.jpg");
+//		} catch (Exception e) {
+//			responseError(response, e.getMessage());
+//		}
+//	}
+
+	private void responseOutputFile(HttpServletResponse response, String filePath, String defaultFileName) {
+		BufferedInputStream bis = null;
+		OutputStream outp = null;
+		try {
+			try {
+				bis = new BufferedInputStream(new FileInputStream(filePath));
+			} catch (Exception e) {
+				bis = new BufferedInputStream(new FileInputStream(getNoFile(defaultFileName)));
+			}
+			outp = response.getOutputStream();
+			byte[] b = new byte[1024];
+			int length = 0;
+			if (null != outp) {
+				while ((length = bis.read(b)) != -1) {
+					outp.write(b, 0, length);
+				}
+				outp.flush();
+			}
+		} catch (Throwable e) {
+			LOGGER.debug("", e);
+		} finally {
+			IOUtils.closeQuietly(outp);
+			IOUtils.closeQuietly(bis);
+		}
+	}
+
+	private void setResponse(String chopName, HttpServletResponse response) {
+		response.reset();
+		response.setHeader("Cache-Control", "no-cache");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+		response.addHeader("Content-Disposition", "attachment;filename=" + chopName);
+		response.setContentType("APPLICATION/OCTET-STREAM ");
+	}
+
+	private String getNoFile(String fileName) {
+		String path = this.getClass().getClassLoader().getResource("/").getPath();
+		path = StringUtils.replace(path, "\\", "/");
+		path = StringUtils.replace(path, "/WEB-INF/classes/", "/style/imgs/");
+		path = path + fileName;
+		return path;
+	}
+
+	private void validate(String fileName) throws Exception {
+		if (StringUtils.isBlank(fileName)) {
+			throw new Exception("File name cannot be empty!");
+		}
+		Pattern pattern = Pattern.compile(RegexConst.PHOTO);
+		Matcher matcher = pattern.matcher(fileName.toLowerCase());
+		if (!matcher.matches()) {
+			throw new Exception("File name error!");
+		}
+	}
+
+	private void responseError(HttpServletResponse response, String message) {
+		PrintWriter fs = null;
+		try {
+			response.setCharacterEncoding("UTF-8");
+			fs = response.getWriter();
+			fs.write("{\"code\":\"300\",\"msg\":\"" + message + "\"}");
+			fs.flush();
+		} catch (IOException e) {
+			IOUtils.closeQuietly(fs);
+		}
+
+	}
+
+	
+ 
+	private UserInfo ImageUpload(UserInfo vo) throws Exception {
+		 
+			String newFileName = null;
+
+			
+			List<MultipartFile> file = vo.getHeadPic();
+			for (MultipartFile multipartFile : file) {
+				
+				if (vo.getHeadPic() != null) {
+					fileSizeOverrun(multipartFile);
+
+					String originalFileName = multipartFile.getOriginalFilename();
+					newFileName = CommonUtils.getUUID() + originalFileName.substring(originalFileName.lastIndexOf("."));
+					File picFile = new File("/home/zhan/ee/" + newFileName);
+
+					try {
+						multipartFile.transferTo(picFile);
+					} catch (IllegalStateException | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						throw new RuleException("上传头像失败");
+					}
+					// write picFile http name into mysql database;
+				}
+				newFileName = "http://192.168.124.4:8877/APP/common/showIcon?fileName=" + newFileName;
+				//vo.setIconUrl(newFileName);
+
+				//UserInfo user = modifyHeadPic(vo);
+				//userimInfoDao.updateimUserPic(user);
+
+			}
+
+			return vo;
+
+		 
+			
+	}
+	
+	private void fileSizeOverrun(MultipartFile file) throws Exception {
+		if (file != null && file.getSize() > (3 * 1024 * 1024)) {
+			throw new Exception("大小超过3M");
+		}
+	}
+	
 	
 	public void saveNeteaseVideo(String portal) throws InterruptedException {
 		String porType = null;
@@ -357,6 +626,12 @@ public class DoMainController implements Runnable {
 			}
 		}
 		
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		 System.err.println(CommonUtils.getUUID());
 	}
 
 }
