@@ -174,11 +174,17 @@ public class DoMainController implements Runnable {
 			return "errorpage/error";
 			}
 		}
-	/*
-	 * ,@RequestParam(value = "Sex") String Sex,
-			@RequestParam(value = "PhoneNum") String  PhoneNum,@RequestParam(value = "IdcardNum") String IdcardNum,
-			@RequestParam(value = "YearNum") String YearNum,
-			@RequestParam(value = "WorkType") String WorkType,
+ 
+	
+	
+	/**
+	 * -----------------{蚂蚁阿奇工程项目接口}-------------------------
+	 */
+	
+	
+	
+	/**
+	 * 注册提交信息content
 	 */
 	@RequestMapping(value ="/Userinfo/UserRegistr" ,method  = RequestMethod.POST)
 	public String Registr(@RequestParam(value = "UserName") String UserName,
@@ -204,6 +210,10 @@ public class DoMainController implements Runnable {
 		return "";
 	}
 		
+	/**
+	 * 注册页面
+	 * @return
+	 */
 	@RequestMapping(value = "/Userinfo/IndexRe.shtml",method =RequestMethod.GET)
 	public String IndexReg(){
 		try {
@@ -215,6 +225,11 @@ public class DoMainController implements Runnable {
 		return "ant/personal";
 	}
 	
+	/**
+	 * 上传身份证页面
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/Userinfo/Idcard.shtml",method =RequestMethod.GET)
 	public String IndexIdcArd(Model model){
 		try {
@@ -228,6 +243,10 @@ public class DoMainController implements Runnable {
 		return "ant/idcard";
 	}
 	
+	/**
+	 * 跳转抢单{list}页面
+	 * @return
+	 */
 	@RequestMapping(value = "/Userinfo/orderlist.shtml",method =RequestMethod.GET)
 	public String OrderList(){
 		try {
@@ -239,11 +258,17 @@ public class DoMainController implements Runnable {
 		return "ant/order-list";
 	}
 	
+	/**
+	 * 跳转个人中心
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/Userinfo/PersonalCenter.shtml",method =RequestMethod.GET)
 	public String PersonalCenter(Model model){
 		try {
 			model.addAttribute("phone", "13521294806");
-			System.err.println("跳转页面！");
+			model.addAttribute("userId", "2334238462492a");
+		System.err.println("跳转页面！");
 			return "ant/personal-center";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -251,7 +276,10 @@ public class DoMainController implements Runnable {
 		return "ant/order-list";
 	}
 	
-	
+	/**
+	 * 跳转订单详情
+	 * @return
+	 */
 	@RequestMapping(value = "/Userinfo/ListDetails.shtml",method =RequestMethod.GET)
 	public String ListDetails(){
 		try {
@@ -263,11 +291,36 @@ public class DoMainController implements Runnable {
 		return "ant/order-list";
 	}
 	
+	/**
+	 * 跳转修改个人信息页面
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/Userinfo/modifyInfo.shtml/{userId}",method =RequestMethod.GET)
+	public String modifyInfo(@PathVariable("userId") String userId){
+		try {
+			return "ant/modify-information";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/order-list";
+	}
+	
+	@RequestMapping(value = "/Userinfo/orderlists.shtml/{userId}",method =RequestMethod.GET)
+	public String MeOrderLists(@PathVariable("userId") String userId){
+		try {
+			System.err.println("跳转页面！");
+			return "ant/my-order";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/order-list";
+	}
+	
 	
 	@RequestMapping(value = "/Userinfo/Details.shtml",method =RequestMethod.GET)
 	public String Details(){
 		try {
-			System.err.println("跳转页面！");
 			return "ant/details";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -275,6 +328,30 @@ public class DoMainController implements Runnable {
 		return "ant/order-list";
 	}
 	
+	@RequestMapping(value = "/Userinfo/modifyUser.shtml",method =RequestMethod.POST)
+	public String getmodifyinfo(
+			@RequestParam(value = "UserName") String UserName,
+			@RequestParam(value = "identity") String Sex,
+			@RequestParam(value = "PhoneNum") String  PhoneNum,
+			@RequestParam(value = "YearNum") String YearNum,Model model){
+		try {
+			System.err.println(UserName);
+			System.err.println(Sex);
+			System.err.println(PhoneNum);
+			System.err.println(YearNum);
+			model.addAttribute("phone", PhoneNum);
+			return "ant/personal-center";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/order-list";
+	}
+	
+	
+	/**
+	 * 上传身份证接收二进制文件流
+	 * @param vo
+	 */
 	@RequestMapping(value = "/Userinfo/ImageUpage.shtml",method = RequestMethod.POST)
 	public void ImageUp(UserInfo vo){
 		try {
@@ -288,11 +365,30 @@ public class DoMainController implements Runnable {
 		System.out.println("上传成功！");
 	}
 	
+	
+	/**
+	 * 上传施工上班视频
+	 * @param vo
+	 */
+	@RequestMapping(value = "/Userinfo/VideoValidation.shtml",method = RequestMethod.POST)
+	public String VideoUpload(UserInfo vo){
+		try {
+			
+			ImageUpload(vo);
+			System.err.println("上传成功！");
+			return "redirect:/Userinfo/PersonalCenter.shtml";
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("上传失败！");
+		}
+		return "redirect:/Userinfo/PersonalCenter.shtml";
+	}
+	
 	@RequestMapping(value = "/common/showIcon",method = RequestMethod.GET)
 	public void showIcon(@RequestParam(required = true) String fileName, HttpServletResponse response,
 			HttpServletRequest request) {
 		try {
-			validate(fileName);
+			//validate(fileName);
 			String filePath = "/home/zhan/ee/" + fileName;
 			request.setAttribute("decorator", "none");
 			setResponse(fileName, response);
@@ -389,7 +485,7 @@ public class DoMainController implements Runnable {
 		 
 			String newFileName = null;
 
-			
+			List<String> image = new ArrayList<>();
 			List<MultipartFile> file = vo.getHeadPic();
 			for (MultipartFile multipartFile : file) {
 				
@@ -411,10 +507,15 @@ public class DoMainController implements Runnable {
 				}
 				newFileName = "http://192.168.124.4:8877/APP/common/showIcon?fileName=" + newFileName;
 				//vo.setIconUrl(newFileName);
-
+				image.add(newFileName);
 				//UserInfo user = modifyHeadPic(vo);
 				//userimInfoDao.updateimUserPic(user);
 
+			}
+			vo.setCheckIdcardPicUrl(image);
+			for (int i = 0; i < vo.getCheckIdcardPicUrl().size(); i++) {
+				
+				System.err.println(vo.getCheckIdcardPicUrl().get(i));
 			}
 
 			return vo;

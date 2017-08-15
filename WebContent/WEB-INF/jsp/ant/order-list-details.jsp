@@ -41,7 +41,7 @@
                 <div class="m-details aggregate">
                     <span>集合地点：</span><a href="">六佰本商业中心</a>
                 </div>
-               <div class="g-field order-derail"><input type="submit" value="我要抢单"></input></div>
+              <!--  <div class="g-field order-derail"><input type="submit" value="我要抢单"></input></div> -->
             </div>
         </div>
         <div class="g-lj-bottom">

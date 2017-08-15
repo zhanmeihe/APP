@@ -96,7 +96,7 @@ body{font-family: "Microsoft YaHei";}
 .g-field{text-align:center;font-size:.3rem;}
 .m-ok{margin-top:.8rem;}
 .m-fieldBottom {margin: 1rem 0 1rem 0;}
-.g-field input,.g-field a{text-decoration:none;display:inline-block;color:#fff;width:6rem;height:.9rem;line-height:.9rem;background:#ff4747;border-radius:35px;box-shadow:1px 1px 0 #ccc;}
+.g-field input,.g-field a{text-align:center;font-size:.3rem;text-decoration:none;display:inline-block;color:#fff;width:6rem;height:.9rem;line-height:.9rem;background:#ff4747;border-radius:35px;box-shadow:1px 1px 0 #ccc;}
 /*注册成功*/
 .g-success {
     margin-top: 2rem;
@@ -184,7 +184,6 @@ body{font-family: "Microsoft YaHei";}
 .m-per .titile-img img {
     width: 1.7rem;
     height: 1.7rem;
-   
 }
 .m-per .titile-img input {
     position: absolute;
@@ -248,21 +247,28 @@ body{font-family: "Microsoft YaHei";}
     padding: .2rem;
 }
 .s-scene ul {
-    display: flex;
+    /*display: flex;*/
+    overflow: hidden;
 }
 .s-scene ul li {
-    flex: 1;
-    border: 1px solid #ccc;
+    /*flex: 1;*/
+    position: relative;
+    float: left;
     font-size: .24rem;
     height: 2rem;
-    /*line-height: 2rem;*/
-}
-.s-scene ul li span {
     width: 2rem;
-    padding-top: .7rem;
+    border: 1px solid #ccc;
+    line-height: 2rem;
+}
+.s-scene ul li input {
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    left: 0;
+    opacity: 0;
 }
 .s-scene ul li:nth-child(2) {
-    margin: 0 .2rem;
+    margin: 0 .48rem;
 }
 .work {
     border-bottom: 1px solid #ccc;

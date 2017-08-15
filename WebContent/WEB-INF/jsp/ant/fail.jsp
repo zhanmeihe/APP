@@ -11,9 +11,9 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-1.10.1.min.js"></script>
-    <script src="js/common.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+    <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/common.js"></script>
 </head>
 <body class="bg-succ">
     <div class="index">

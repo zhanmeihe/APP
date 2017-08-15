@@ -30,7 +30,7 @@
 			<div class="g-personal">
 				<div class="m-bg-id">
 					<div class="g-upload" id="warp">
-						<div class="id">上传身份证：${phone}</div>
+						<div class="id"  >上传身份证：</div>
 						<div class="m-upload-id">
 							<img src="<%=request.getContextPath()%>/images/Positive-ID.png"
 								alt="" id="imgShow_WU_FILE_0"> <input class="headPic"
@@ -47,6 +47,7 @@
 								alt="" id="imgShow_WU_FILE_2"> <input class="headPic"
 								type="file" name="headPic" id="up_img_WU_FILE_2">
 						</div>
+						<input type="hidden" name="phone"  value="${phone}"/>
 					</div>
 				</div>
 				<!--  <div class="g-field m-fieldBottom"><input type="submit" value="下一步" ></div> -->

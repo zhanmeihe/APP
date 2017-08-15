@@ -67,18 +67,18 @@
 					<div class="bank-card">
 						<div>我的订单</div>
 						<div class="right">
-							<a href="">点击查看</a>
+							<a href="<%=request.getContextPath()%>/Userinfo/orderlists.shtml/${userId}">点击查看</a>
 						</div>
 					</div>
 					<div class="g-field">
-						<a href="">修改个人信息</a>
+						<a href="<%=request.getContextPath()%>/Userinfo/modifyInfo.shtml/${userId}">修改个人信息</a>
 					</div>
 				</div>
 			</div>
 			<div class="g-lj-bottom">
 				<a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml">抢单</a>
 				<a href="###">施工</a> <a
-					href="<%=request.getContextPath()%>//Userinfo/PersonalCenter.shtml">个人中心</a>
+					href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml">个人中心</a>
 			</div>
 		</div>
 	</div>
@@ -117,6 +117,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var  phone = ${phone};
+	//var userId = ${userId};
+	//var url = <%=request.getContextPath()%>+"/Userinfo/orderlists.shtml/"+userId;
 	//alert(phone);
 });
 

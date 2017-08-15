@@ -108,13 +108,15 @@ public class UserInfo implements Serializable {
 	/**
 	 * 身份证照片
 	 */
-	private String CheckIdcardPicUrl;
+	private List<String> CheckIdcardPicUrl;
 	
-	public String getCheckIdcardPicUrl() {
+	 
+
+	public List<String> getCheckIdcardPicUrl() {
 		return CheckIdcardPicUrl;
 	}
 
-	public void setCheckIdcardPicUrl(String checkIdcardPicUrl) {
+	public void setCheckIdcardPicUrl(List<String> checkIdcardPicUrl) {
 		CheckIdcardPicUrl = checkIdcardPicUrl;
 	}
 
