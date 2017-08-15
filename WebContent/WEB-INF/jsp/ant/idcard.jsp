@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<link type="favicon" rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" />
 <meta charset="UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
