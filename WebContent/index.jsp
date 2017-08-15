@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-    
+    <link type="favicon" rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta content="yes" name="apple-mobile-web-app-capable">
