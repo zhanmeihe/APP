@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,85 +12,55 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-    <title>Document</title>
+    <title>订单列表</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/common.js"></script>
 </head>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	 var skin = ${skin};//获取input的节点
+	   if (skin<=0 ) {
+		alert("不好意思，新发布的任务已被抢完！");
+		history.go(-1);
+	 
+	}
+ 
+	 
+});
+
+</script>
 <body class="">
     <div class="index">
         <div class="g-order-list">
-            <div class="m-order-title">订单列表</div>
+            
             <div class="m-order-cent">
                 <ul>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/Userinfo/ListDetails.shtml">
+                <c:forEach items="${task}" var="taskinfo">
+                 <li>
+                        <a href="<%=request.getContextPath()%>/Userinfo/ListDetailsOrder.shtml/${taskinfo.id}/${userId}">
                             <div class="z-center">
                                 <div class="details">
-                                    <p>任务摘要：XXXX</p>
-                                    <p>薪资：500</p>
-                                    <p>任务时间：2017.8.1-2017-9.1</p>
-                                    <p>任务地点：六佰本商业街北区401</p>
+                                    <p>任务摘要：${taskinfo.taskInstruction }</p>
+                                    <p>薪资：${taskinfo.salaryNum }</p>
+                                    <p>任务时间：${taskinfo.taskDate }</p>
+                                    <p style="color: blue;">任务地点：${taskinfo.taskAddress }</p>
                                 </div>
                             </div>
                         </a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/Userinfo/ListDetails.shtml">
-                            <div class="z-center">
-                                <div class="details">
-                                    <p>任务摘要：XXXX</p>
-                                    <p>薪资：500</p>
-                                    <p>任务时间：2017.8.1-2017-9.1</p>
-                                    <p>任务地点：六佰本商业街北区401</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/Userinfo/ListDetails.shtml">
-                            <div class="z-center">
-                                <div class="details">
-                                    <p>任务摘要：XXXX</p>
-                                    <p>薪资：500</p>
-                                    <p>任务时间：2017.8.1-2017-9.1</p>
-                                    <p>任务地点：六佰本商业街北区401</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/Userinfo/ListDetails.shtml">
-                            <div class="z-center">
-                                <div class="details">
-                                    <p>任务摘要：XXXX</p>
-                                    <p>薪资：500</p>
-                                    <p>任务时间：2017.8.1-2017-9.1</p>
-                                    <p>任务地点：六佰本商业街北区401</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/Userinfo/ListDetails.shtml">
-                            <div class="z-center">
-                                <div class="details">
-                                    <p>任务摘要：XXXX</p>
-                                    <p>薪资：500</p>
-                                    <p>任务时间：2017.8.1-2017-9.1</p>
-                                    <p>任务地点：六佰本商业街北区401</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+                    </li> 
+                </c:forEach>
+                   
                 </ul>
             </div>
         </div>
         <div class="g-lj-bottom">
-            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml">抢单</a>
-            <a href="###">施工</a>
-            <a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml">个人中心</a>
+            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml/${userId}">抢单</a>
+            <a href="<%=request.getContextPath()%>/working/orderwork.shtml/${userId}">施工</a>
+            <a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${userId}">个人中心</a>
         </div>
     </div>
 </body>
+
 </html>

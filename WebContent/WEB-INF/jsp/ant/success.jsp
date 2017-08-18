@@ -27,7 +27,7 @@
             <div>领取工服请联系工程负责人</div>
             <div>姓名：杨增旺</div>
             <div>电话：17801157396</div>
-            <div class="g-field fanhui-index"><a href="javascript:;">确定</a></div>
+            <div class="g-field fanhui-index"><a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${userId}">确定</a></div>
         </div>
     </div>
 </body>

@@ -1,105 +1,94 @@
 <?xml version="1.0" encoding="GBK" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
 "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="com.service.TestCollect.dao.VideoDao">
-<cache eviction="LRU" flushInterval="60000" size="1024" readOnly="true" />
+<mapper namespace="com.service.TestCollect.dao.UserInfoDao">
 
 	<resultMap id="BaseResultMap" type="com.service.TestCollect.pojo.UserInfo">
-		<result column="USER_ID" property="userId" />
-		<result column="USER_NAME" property="UserName" />
+	<result column="USER_ID" property="userId" />
+		<result column="USER_NAME" property="userName" />
 		<result column="OPEN_ID" property="openid" />
-		<result column="BANK_CARD" property="BankCard" />
-		<result column="SEX" property="Sex" />
+		<result column="BANK_CARD" property="bankCard" />
+		<result column="SEX" property="sex" />
 		<result column="ADDRESS" property="address" />
-		<result column="WORK_TYPE" property="WorkType" />
+		<result column="WORK_TYPE" property="workType" />
 		<result column="INTRODUCER" property="introducer" />
-		<result column="IDCARD_NUM" property="IdcardNum" />
-		<result column="PHONE_NUM" property="PhoneNum" />
-		<result column="IMAGE_URL" property="PicImage" />
-		<result column="IDCARD_URL" property="CheckIdcardPicUrl" />
-		<result column="YEAR_NUM" property="YearNum" />
+		<result column="IDCARD_NUM" property="idcardNum" />
+		<result column="PHONE_NUM" property="phoneNum" />
+		<result column="IMAGE_URL" property="picImage" />
+		<result column="IDCARD_URL" property="checkIdcardPicUrl" />
+		<result column="YEAR_NUM" property="yearNum" />
+		<result column="CREATE_DATE" property="createtime" />
+		<result column="UPDATE_DATE" property="updateDate" />
+		
+		
 	</resultMap>
-
-
+ 
 	<insert id="create" parameterType="com.service.TestCollect.dao.VideoDao">
 		<!-- 自增生成主键策略 -->
 		<!-- <selectKey keyProperty="ID" resultType="int" order="BEFORE"> select 
 			PARAMETER_S.nextval from dual </selectKey> -->
 
-		insert into netease_video
-		(Web_Site_Id,Video_Title,Web_Url,Description,Adress,Video_Create_Date,Web_Site,Video_Url,Video_Img_Url,Video_Type,Actor,Director,Sys_Date,Time_Length)
+		insert into user_info
+		(USER_ID,USER_NAME,OPEN_ID,BANK_CARD,SEX,ADDRESS,WORK_TYPE,INTRODUCER,IDCARD_NUM,PHONE_NUM,IMAGE_URL,IDCARD_URL,YEAR_NUM,CREATE_DATE)
 		values (
 
-		#{ progid, javaType=String,
+		#{ userId, javaType=String,
 		jdbcType=VARCHAR},
-		#{ name, javaType=String,
+		#{ userName, javaType=String,
 		jdbcType=VARCHAR},
-		#{ url,
+		#{ openid,
 		javaType=String, jdbcType=VARCHAR},
 		#{
-		description, javaType=String,
+		bankCard, javaType=String,
 		jdbcType=VARCHAR},
-		#{ area,
+		#{ sex,
 		javaType=String, jdbcType=VARCHAR},
 		#{
-		publishDate, javaType=String,
+		address, javaType=String,
 		jdbcType=VARCHAR},
-		#{ appName,
+		#{ workType,
 		javaType=String, jdbcType=VARCHAR},
 		#{
-		videoPath, javaType=String,
+		introducer, javaType=String,
 		jdbcType=VARCHAR},
-		#{ imageUrl,
+		#{ idcardNum,
 		javaType=String, jdbcType=VARCHAR},
 		#{
-		progType, javaType=String,
+		phoneNum, javaType=String,
 		jdbcType=VARCHAR},
-		#{ actor,
+		#{ picImage,
 		javaType=String, jdbcType=VARCHAR},
 		#{
-		director, javaType=String,
+		checkIdcardPicUrl, javaType=String,
 		jdbcType=VARCHAR},
-		#{ sysDate,
+		#{ yearNum,
 		javaType=String,
 		jdbcType=VARCHAR},
-		#{ timeLength,
+		#{ createtime,
 		javaType=String,
 		jdbcType=VARCHAR}
 		)
 	</insert>
-
-
-	<select id="querydata" resultMap="BaseResultMap" parameterType="String">
-		select *
-		from netease_video order by Sys_Date desc
-		LIMIT #{ firstResult} , #{ maxResults}
-	</select>
-
-	<select id="FinadInfo" resultMap="BaseResultMap" parameterType="String">
-		SELECT *
-		FROM user_info
-		WHERE
-		USER_ID=#{userId} or PHONE_NUM=#{phonenum}
-	</select>
 	
-	<select id="querybool" resultMap="BaseResultMap" parameterType="String">
-		SELECT *
-		FROM netease_video
-		WHERE
-		Web_Site_Id=#{thirdId}
-	</select>
-
-
-	<select id="querytype" resultMap="BaseResultMap" parameterType="String">
-		select Video_Type,count(*) AS numcount
-		from netease_video
-		 group by Video_Type order by numcount
-	</select>
 	
-	<select id="queryvideoType" resultMap="BaseResultMap" parameterType="String">
+	  <update id="updateUserInfo" parameterType="com.service.TestCollect.pojo.UserInfo" >
+    update user_info
+    set
+    		USER_NAME=#{ userName, javaType=String, jdbcType=VARCHAR},
+			 
+			SEX=#{ sex, javaType=String, jdbcType=VARCHAR},
+			PHONE_NUM=#{ phoneNum, javaType=String, jdbcType=VARCHAR},
+			YEAR_NUM=#{ yearNum, javaType=String, jdbcType=VARCHAR},
+			UPDATE_DATE=#{ updateDate, javaType=String, jdbcType=VARCHAR}
+	where 
+			USER_ID=#{ userId}
+	</update>
+	
+	
+	<select id="queryId" resultMap="BaseResultMap" parameterType="String">
 		select *
-		from netease_video where Video_Type=#{videotype} order by Sys_Date DESC
-		LIMIT #{ firstResult} , #{ maxResults}
+		from user_info where OPEN_ID=#{openId} or USER_ID=#{userId}
+		 
 	</select>
 
 </mapper>

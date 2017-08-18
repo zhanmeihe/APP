@@ -92,7 +92,7 @@ function formValidatemodify() {
         alert("请选择性别!");
         return false;
     }else {
-        window.location.href = "/APP/Userinfo/Idcard.shtml";
+        window.location.href = "/Userinfo/Idcard.shtml";
     }
     // 如果没有错误则提交
 }

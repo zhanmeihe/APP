@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ page import="com.service.TestCollect.pojo.UserInfo,java.lang.*"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,11 +21,12 @@
 <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/common.js"></script>
 </head>
+
 <body class="">
+
 	<div class="index">
-		<div class="">
-			<div class="m-order-title">个人中心</div>
-		</div>
+		 
+		
 		<div class="g-per-center">
 			<div class="m-per">
 				<div class="titile-img">
@@ -34,56 +36,60 @@
 						<input type="file"  onchange="viewImage(this)">
 					
 				</div>
+				
 				<div class="m-personal-center">
 					<div class="bank-card">
+					
 						<div>姓名</div>
-						<div class="right">张三</div>
+						<div class="right">${user.userName}</div>
 					</div>
 					<div class="bank-card">
 						<div>性别</div>
-						<div class="right">男</div>
+						
+						<div class="right">${user.sex}</div>
 					</div>
 					<div class="bank-card">
 						<div>现居住地址</div>
-						<div class="right">北京市朝阳区XXX路2号院1号1室</div>
+						<div class="right">${user.address }</div>
 					</div>
 					<div class="bank-card">
 						<div>工种</div>
 						<div class="right">
-							<span>电工</span>
+							<span>${user.workType}</span>
 						</div>
 					</div>
 					<div class="bank-card">
 						<div>介绍人</div>
-						<div class="right">李四</div>
+						<div class="right">${user.introducer}</div>
 					</div>
 					<div class="bank-card">
 						<div>钱包</div>
 						<div class="right">1000元</div>
+						<input type="hidden" name="idcard" id="idcard" value="${user.idcardNum}"/>
 					</div>
 					<div class="bank-card">
 						<div>身份证</div>
-						<div class="right">${fn:substring(phone,0,3)}****${fn:substring(phone,7,11)}</div>
+						<div class="right">${fn:substring(idcardNum,0,4)}****${fn:substring(idcardNum,14,18)}</div>
 					</div>
 					<div class="bank-card">
 						<div>我的订单</div>
 						<div class="right">
-							<a href="<%=request.getContextPath()%>/Userinfo/orderlists.shtml/${userId}">点击查看</a>
+							<a href="<%=request.getContextPath()%>/Userinfo/orderlists.shtml/${user.userId}">点击查看</a>
 						</div>
 					</div>
 					<div class="g-field">
-						<a href="<%=request.getContextPath()%>/Userinfo/modifyInfo.shtml/${userId}">修改个人信息</a>
+						<a href="<%=request.getContextPath()%>/Userinfo/modifyInfo.shtml/${user.userId}">修改个人信息</a>
 					</div>
 				</div>
 			</div>
 			<div class="g-lj-bottom">
-				<a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml">抢单</a>
-				<a href="###">施工</a> <a
-					href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml">个人中心</a>
+				<a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml/${user.userId}">抢单</a>
+				<a href="<%=request.getContextPath()%>/working/orderwork.shtml/${user.userId}">施工</a> <a
+					href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${user.userId}">个人中心</a>
 			</div>
 		</div>
 	</div>
-
+ 
 	<script type="text/javascript">
 		function viewImage(file) {
 			var preview = document.getElementById('preview');
@@ -114,10 +120,13 @@
 			return true;
 		}
 	</script>
+
 	
 <script type="text/javascript">
 $(document).ready(function(){
-	var  phone = ${phone};
+	 var idcardNum = ${idcardNum};//获取input的节点
+	   
+	//var  idcardNum = inum;
 	//var userId = ${userId};
 	//var url = <%=request.getContextPath()%>+"/Userinfo/orderlists.shtml/"+userId;
 	//alert(phone);

@@ -11,17 +11,16 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-1.10.1.min.js"></script>
-    <script src="js/common.js"></script>
+    <title>抢单成功</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+    <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/common.js"></script>
 </head>
 <body class="bg-succ">
     <div class="index">
         <div class="g-success">
-            <span class="titile">抢单成功</span>
             <p>项目经理联系方式</p>
-            <p>姓名：XXX</p>
+            <p>姓名：张璐</p>
             <p>电话：18518018018</p>
             <div>
                 <span>工作要求</span>
@@ -36,7 +35,7 @@
                 <p>2,</p>
                 <p>3,</p>
             </div>
-            <div class="g-field fanhui-index"><a href="javascript:;">确定</a></div>
+            <div class="g-field fanhui-index"><a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${userId}">确定</a></div>
         </div>
     </div>
 </body>

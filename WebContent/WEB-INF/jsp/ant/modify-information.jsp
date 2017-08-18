@@ -24,7 +24,7 @@
         <div class="g-personal">
             <div class="m-name">
                 <div><label for="">姓名：</label><input name="UserName" type="text" class="name" placeholder="请输入您的姓名"></div>
-                <div class="gender"><span>性别：</span><label for=""><input type="radio" name="identity" value="1"><span>男</span></label><label for=""><input type="radio" name="identity" value="0"><span>女</span></label></div>
+                <div class="gender"><span>性别：</span><label for=""><input type="radio" name="identity" value="男"><span>男</span></label><label for=""><input type="radio" name="identity" value="女"><span>女</span></label></div>
                 <div><label for="">手机号：</label><input name="PhoneNum" type="text" class="phone" placeholder="请输入您的手机号"></div>
                 <div><label for="">工龄：</label>
                     <select name="YearNum" id="YearNum">
@@ -35,6 +35,7 @@
             </div>
             <div class="g-field m-fieldBottom"><input type="submit" value="完成"></div>
         </div>
+        <input type="hidden" name="userId"  value="${userId}"/>
         </form>
     </div>
    <%--  <script>

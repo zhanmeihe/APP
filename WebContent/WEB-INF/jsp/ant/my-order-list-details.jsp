@@ -17,11 +17,8 @@
 </head>
 <body class="">
     <div class="index">
-     <form action="<%=request.getContextPath()%>/orderInfo/GrabSingle.shtml" method="post">
         <div class="g-order-list">
-            
-            <input type="hidden" name="taskId" value="${info.id}"/>
-             <input type="hidden" name="userId" value="${userId}"/>
+             
             <div class="m-order-cent">
                 <div class="m-details">
                     <div class="details">
@@ -42,16 +39,15 @@
                     </div>
                 </div>
                 <div class="m-details aggregate">
-                    <span style=" color: blue;">集合地点：</span><a style="color: blue;" class="map-gation">${info.taskAddress }</a>
+                    <span style="color: blue;">集合地点：</span><a style="color: blue;" class="map-gation">${info.taskAddress }</a>
                 </div>
-                <div class="g-field order-derail"><input type="submit" value="我要抢单"></input></div>
+               <!--  <div class="g-field order-derail"><input type="submit" value="我要抢单"></input></div> -->
             </div>
         </div>
-        </form>
         <div class="g-lj-bottom">
-            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml/${userId}">抢单</a>
-            <a href="<%=request.getContextPath()%>/working/orderwork.shtml/${userId}">施工</a>
-            <a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${userId}">个人中心</a>
+            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml/${info.userId}">抢单</a>
+            <a href="<%=request.getContextPath()%>/working/orderwork.shtml/${info.userId}">施工</a>
+            <a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${info.userId}">个人中心</a>
         </div>
     </div>
     <script>

@@ -15,6 +15,26 @@ public class UserInfo implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	private String createtime;
+	
+	private String updateDate;
+	
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public String getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(String createtime) {
+		this.createtime = createtime;
+	}
+
 	private  String userId;
 	
 	private String introducer;
@@ -23,7 +43,7 @@ public class UserInfo implements Serializable {
 	
 	private String openid;
 	
-	private String BankCard;
+	private String bankCard;
 	
 	public String getOpenid() {
 		return openid;
@@ -34,12 +54,10 @@ public class UserInfo implements Serializable {
 	}
 
 	public String getBankCard() {
-		return BankCard;
+		return bankCard;
 	}
 
-	public void setBankCard(String bankCard) {
-		BankCard = bankCard;
-	}
+ 
 
 	public String getAddress() {
 		return address;
@@ -68,122 +86,147 @@ public class UserInfo implements Serializable {
 	/**
 	 * 用户名
 	 */
-	private String UserName;
+	private String userName;
 	
 	/**
 	 * 性别 1：男  0：女
 	 */
-	private int Sex;
+	private String sex;
 	
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public void setBankCard(String bankCard) {
+		this.bankCard = bankCard;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public void setIdcardNum(String idcardNum) {
+		this.idcardNum = idcardNum;
+	}
+
+	public void setYearNum(String yearNum) {
+		this.yearNum = yearNum;
+	}
+
+	public void setWorkType(String workType) {
+		this.workType = workType;
+	}
+
+	public void setPicImage(String picImage) {
+		this.picImage = picImage;
+	}
+
 	/**
 	 * 手机号
 	 */
-	private int PhoneNum;
+	private String phoneNum;
 	
 	/**
 	 * 身份证号
 	 */
-	private String IdcardNum;
+	private String idcardNum;
 
 	/**
 	 * 工作年限
 	 */
-	private String YearNum;
+	private String yearNum;
 	
 	/**
 	 * 工作种类
 	 */
-	private  String WorkType;
+	private  String workType;
+	
+	 
 	
 	/**
 	 * 头像图片
 	 */
-	private String PicImage;
+	private String picImage;
 	
-	/**
-	 * 接收的图片二进制文件
-	 */
-	private List<MultipartFile> headPic;
-	
-	/**
-	 * 身份证照片
-	 */
-	private List<String> CheckIdcardPicUrl;
-	
-	 
+//	/**
+//	 * 接收的图片二进制文件
+//	 */
+//	private List<MultipartFile> headPic;
+//	
+//	/**
+//	 * 身份证照片
+//	 */
+//	private List<String> CheckIdcardPicUrl;
+//	
+//	 
+//
+//	public List<String> getCheckIdcardPicUrl() {
+//		return CheckIdcardPicUrl;
+//	}
+//
+//	public void setCheckIdcardPicUrl(List<String> checkIdcardPicUrl) {
+//		CheckIdcardPicUrl = checkIdcardPicUrl;
+//	}
 
-	public List<String> getCheckIdcardPicUrl() {
-		return CheckIdcardPicUrl;
+	private String checkIdcardPicUrl;
+	
+	public String getCheckIdcardPicUrl() {
+		return checkIdcardPicUrl;
 	}
 
-	public void setCheckIdcardPicUrl(List<String> checkIdcardPicUrl) {
-		CheckIdcardPicUrl = checkIdcardPicUrl;
+	public void setCheckIdcardPicUrl(String checkIdcardPicUrl) {
+		this.checkIdcardPicUrl = checkIdcardPicUrl;
 	}
 
 	public String getUserName() {
-		return UserName;
-	}
-
-	public void setUserName(String userName) {
-		UserName = userName;
-	}
-
-	public int getSex() {
-		return Sex;
-	}
-
-	public void setSex(int sex) {
-		Sex = sex;
-	}
-
-	public int getPhoneNum() {
-		return PhoneNum;
-	}
-
-	public void setPhoneNum(int phoneNum) {
-		PhoneNum = phoneNum;
-	}
-
-	public String getIdcardNum() {
-		return IdcardNum;
-	}
-
-	public void setIdcardNum(String idcardNum) {
-		IdcardNum = idcardNum;
-	}
-
-	public String getYearNum() {
-		return YearNum;
-	}
-
-	public void setYearNum(String yearNum) {
-		YearNum = yearNum;
+		return userName;
 	}
 
 	 
-	public String getWorkType() {
-		return WorkType;
+ 
+
+	public String getPhoneNum() {
+		return phoneNum;
 	}
 
-	public void setWorkType(String workType) {
-		WorkType = workType;
+	 
+	public String getIdcardNum() {
+		return idcardNum;
 	}
+
+	 
+	public String getYearNum() {
+		return yearNum;
+	}
+
+	 
+	 
+	public String getWorkType() {
+		return workType;
+	}
+ 
 
 	public String getPicImage() {
-		return PicImage;
+		return picImage;
 	}
 
-	public void setPicImage(String picImage) {
-		PicImage = picImage;
-	}
+	 
 
-	public List<MultipartFile> getHeadPic() {
-		return headPic;
-	}
-
-	public void setHeadPic(List<MultipartFile> headPic) {
-		this.headPic = headPic;
-	}
+//	public List<MultipartFile> getHeadPic() {
+//		return headPic;
+//	}
+//
+//	public void setHeadPic(List<MultipartFile> headPic) {
+//		this.headPic = headPic;
+//	}
 
 	 
 

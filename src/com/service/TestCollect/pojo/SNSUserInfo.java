@@ -3,7 +3,15 @@ package com.service.TestCollect.pojo;
 import java.util.List;
 
 public class SNSUserInfo {
-    // 用户标识
+    @Override
+	public String toString() {
+		return "SNSUserInfo [openId=" + openId + ", nickname=" + nickname
+				+ ", sex=" + sex + ", country=" + country + ", province="
+				+ province + ", city=" + city + ", headImgUrl=" + headImgUrl
+				+ ", privilegeList=" + privilegeList + "]";
+	}
+
+	// 用户标识
     private String openId;
     // 用户昵称
     private String nickname;

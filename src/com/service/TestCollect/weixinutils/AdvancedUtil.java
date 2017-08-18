@@ -93,6 +93,8 @@ public class AdvancedUtil {
 				// 用户特权信息
 				snsUserInfo.setPrivilegeList(JSONArray.toList(
 						jsonObject.getJSONArray("privilege"), List.class));
+				
+				System.err.println(snsUserInfo.toString());
 			} catch (Exception e) {
 				snsUserInfo = null;
 				int errorCode = jsonObject.getInt("errcode");

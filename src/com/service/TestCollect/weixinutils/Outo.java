@@ -26,7 +26,7 @@ public class Outo {
 	        // 用户同意授权
 	        if (!"authdeny".equals(code)) {
 	            // 获取网页授权access_token
-	            WeixinOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken("wxe34a90ac7bxxcab85c", "1207d566090a8344xxxd6224c02c", code);
+	            WeixinOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken("wx58c3690739e2df3d", "4bc2347815f18005445b48f8bd34ab39", code);
 	            // 网页授权接口访问凭证
 	            String accessToken = weixinOauth2Token.getAccessToken();
 	            // 用户标识

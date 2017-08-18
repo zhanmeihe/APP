@@ -12,5 +12,21 @@
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 		<property name="mapperInterface" value="com.service.TestCollect.dao.VideoDao" />
 	</bean> 
+	
+		<bean id="userInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.service.TestCollect.dao.UserInfoDao" />
+	</bean> 
+	
+		<bean id="taskInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.service.TestCollect.dao.TaskInfoDao" />
+	</bean> 
+	
+		<bean id="myorderInfoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.service.TestCollect.dao.MyorderInfoDao" />
+	</bean> 
+	
 </beans>
 	

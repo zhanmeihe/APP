@@ -1,14 +1,15 @@
 package com.service.TestCollect.dao;
 
- import org.apache.ibatis.annotations.Param;
-
+ import java.util.List;
+import org.apache.ibatis.annotations.Param;
 import com.service.TestCollect.pojo.MyorderInfo;
-import com.service.TestCollect.pojo.UserInfo;
+ 
+ 
  
 
-public interface UserInfoDao {
+public interface MyorderInfoDao {
 	
-	void create(UserInfo info);
+	void createTask(MyorderInfo info);
 //	
 //	List<Video> querydata(@Param("firstResult") int firstResult, @Param("maxResults") int maxResult);
 //	
@@ -17,9 +18,13 @@ public interface UserInfoDao {
 //	
 //	List<Video> querytype();
 	
-	UserInfo queryId(@Param("openId") String openId ,@Param("userId") String userId);
+	List<MyorderInfo> queryOrder(@Param("userId") String userId);
 	
-	void updateUserInfo(UserInfo info);
+	void updateTaskInfo(MyorderInfo info);
+	
+	List<MyorderInfo> selectInfo();
+	
+	MyorderInfo selectOrderInfo(@Param("taskId") String taskId);
 	
 //	boolean querybool(@Param("thirdId") String thirdId);
 //	 

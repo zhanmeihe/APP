@@ -12,7 +12,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable">
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
-<title>Document</title>
+<title>蚂蚁阿奇注册</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
@@ -51,13 +51,15 @@
 				<div class="m-name">
 					<div>
 						<label for="">姓名：</label><input name="UserName" type="text"
-							class="name" placeholder="请输入您的姓名">
+							class="name" value="${snsUserInfo.nickname}" placeholder="请输入您的姓名">
 					</div>
 					<div class="gender">
 						<span>性别：</span> <label for=""><input type="radio"
-							name="identity" value="1"><span>男</span></label> <label for=""><input
-							type="radio" name="identity" value="0"><span>女</span></label>
+							name="identity" value="男"><span>男</span></label> <label for=""><input
+							type="radio" name="identity" value="女"><span>女</span></label>
 					</div>
+					<input type="hidden" name="openId"  value="${snsUserInfo.openId}"/>
+					<input type="hidden" name="headImgUrl"  value="${snsUserInfo.headImgUrl}"/>
 					<div>
 						<label for="">手机号：</label><input name="PhoneNum" type="text"
 							class="phone" placeholder="请输入您的手机号">

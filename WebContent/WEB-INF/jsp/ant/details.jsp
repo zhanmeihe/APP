@@ -3,7 +3,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-<link type="favicon" rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" />
     <meta charset="UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,14 +12,14 @@
     <meta content="telephone=no" name="format-detection">
     <title>施工详情</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-   <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/common.js"></script>
-   <%--  <script src="<%=request.getContextPath()%>/js/swipeslider.min.js"></script> --%>
+    <script src="<%=request.getContextPath()%>/js/swipeslider.min.js"></script>
 </head>
 <body class="goal_bg">
     <div class="index">
         <div class="">
-            <div class="m-order-title">施工详情</div>
+           
         </div>
         <form action="<%=request.getContextPath()%>/Userinfo/VideoValidation.shtml" method="post" enctype="multipart/form-data">
         <div class="g-details">
@@ -34,9 +33,9 @@
                     <span class="go-work">抵达现场</span>
                     <div class="s-scene">
                         <ul>
-                            <li><input name="headPic" type="file"/>请录制现场视频</li>
-                            <li><input name="headPic" type="file"/>请录制现场视频</li>
-                            <li><input name="headPic" type="file" />请录制现场视频</li>
+                            <li><input name="headPic" type="file" value="请录制现场视频">请录制现场视频</li>
+                            <li><input name="headPic" type="file" value="请录制现场视频">请录制现场视频</li>
+                            <li><input name="headPic" type="file" value="请录制现场视频">请录制现场视频</li>
                         </ul>
                     </div>
                 </div>
@@ -44,9 +43,9 @@
                     <span class="go-work">施工过程</span>
                     <div class="s-scene">
                         <ul>
-                            <li><input name="headPic" type="file"/>施工过程视频</li>
-                            <li><input name="headPic" type="file"/>施工过程视频</li>
-                            <li><input name="headPic" type="file"/>施工过程视频</li>
+                            <li><input name="headPic" type="file" value="施工过程视频">施工过程视频</li>
+                            <li><input name="headPic" type="file" value="施工过程视频">施工过程视频</li>
+                            <li><input name="headPic" type="file" value="施工过程视频">施工过程视频</li>
                         </ul>
                     </div>
                 </div>
@@ -54,17 +53,17 @@
                     <span class="go-work">当日工作结束</span>
                     <div class="s-scene">
                         <ul>
-                            <li><input name="headPic" type="file"/>工作结束视频</li>
-                            <li><input name="headPic" type="file"/>工作结束视频</li>
-                            <li><input name="headPic" type="file"/>工作结束视频</li>
+                            <li><input name="headPic"  type="file" value="工作结束视频">工作结束视频</li>
+                            <li><input name="headPic" type="file" value="工作结束视频">工作结束视频</li>
+                            <li><input name="headPic" type="file" value="工作结束视频">工作结束视频</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="g-field m-fieldBottom"><input type="submit" value="确定"  ></div>
+            <div class="g-field m-fieldBottom"><input type="submit" value="确定" ></div>
         </div>
         </form>
     </div>
- 
+    <!-- <script src=js/details.js></script> -->
 </body>
 </html>
