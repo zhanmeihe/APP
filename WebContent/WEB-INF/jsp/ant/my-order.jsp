@@ -25,9 +25,7 @@ $(document).ready(function(){
 		alert("您还没有订单或正在施工的任务！");
 		history.go(-1);
 	 
-	}
- 
-	 
+	};
 });
 
 </script>
@@ -56,7 +54,7 @@ $(document).ready(function(){
             </div>
         </div>
         <div class="g-lj-bottom">
-            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml">抢单</a>
+            <a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml/${userId}">抢单</a>
             <a href="<%=request.getContextPath()%>/working/orderwork.shtml/${userId}">施工</a>
             <a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${userId}">个人中心</a>
         </div>

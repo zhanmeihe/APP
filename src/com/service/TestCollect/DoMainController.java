@@ -35,6 +35,7 @@ import com.service.TestCollect.dao.MyorderInfoDao;
 import com.service.TestCollect.dao.TaskInfoDao;
 import com.service.TestCollect.dao.UserInfoDao;
 import com.service.TestCollect.dao.VideoDao;
+import com.service.TestCollect.dao.WorkVideoDao;
 import com.service.TestCollect.pojo.MyorderInfo;
 import com.service.TestCollect.pojo.SNSUserInfo;
 import com.service.TestCollect.pojo.TaskInfo;
@@ -42,6 +43,7 @@ import com.service.TestCollect.pojo.UserInfo;
 import com.service.TestCollect.pojo.UserInfofileVo;
 import com.service.TestCollect.pojo.Video;
 import com.service.TestCollect.pojo.WeixinOauth2Token;
+import com.service.TestCollect.pojo.WorkVideo;
 import com.service.TestCollect.service.NeteaseVideoService;
 import com.service.TestCollect.weixinutils.AdvancedUtil;
 import com.zhan.ex.RuleException;
@@ -76,6 +78,9 @@ public class DoMainController implements Runnable {
 	private TaskInfoDao taskInfoDao;
 	@Resource
 	private MyorderInfoDao myorderInfoDao;
+	
+	@Resource
+	private WorkVideoDao workVideoDao;
 
 	/**
 	 * 抓取网易端视频接口
@@ -312,6 +317,8 @@ public class DoMainController implements Runnable {
 			String ss = "123";
 			if (!"authdeny".equals(ss)) {
 
+				UserInfo dd = userInfoDao.MaxId();
+				System.out.println(dd.getPersonNum());
 				UserInfo info = new UserInfo();
 				info = userInfoDao.queryId(null, userId);
 				if (info != null) {
@@ -519,6 +526,7 @@ public class DoMainController implements Runnable {
 				myorderInfoDao.createTask(order);
 				
 				model.addAttribute("userId", userId);
+				model.addAttribute( "taskId",order.getTaskId());
 				return "ant/successorders";
 			}else {
 				
@@ -580,15 +588,51 @@ public class DoMainController implements Runnable {
 		}
 		return "ant/fail";
 	}
-
-	@RequestMapping(value = "/Userinfo/Details.shtml", method = RequestMethod.GET)
-	public String Details() {
+	
+	/**
+	 * 上班打卡页面
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/workin/Clockin.shtml",method = RequestMethod.POST)
+	public String Clockin(@RequestParam(value = "userId") String userId,@RequestParam(value = "taskId") String taskId,
+			UserInfofileVo vo,Model model) throws Exception{
 		try {
-			return "ant/details";
-		} catch (Exception e) {
+			WorkVideo info = new WorkVideo();
+			info.setUserId(userId);
+			info.setCreateDate(CommonUtils.getNowDate());
+			info.setUpdatetime(CommonUtils.getNowDate());
+			info.setTaskId(taskId);
+			Video2Upload(info, vo);
+			model.addAttribute("userId", userId);
+			return "ant/index";
+		} catch (UnisException e) {
+			// TODO: handle exception
+		}catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "ant/order-list";
+		return "ant/fail";
+	}
+
+	
+	/**
+	 * 跳转上班
+	 * @param userId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/Userinfo/workclock.shtml/{userId}/{taskId}", method = RequestMethod.GET)
+	public String Details(@PathVariable("userId") String userId,@PathVariable("taskId") String taskId,Model model) {
+		try {
+			model.addAttribute("userId", userId);
+			model.addAttribute("taskId", taskId);
+			return "ant/details";
+		} catch (UnisException e) {
+			// TODO: handle exception
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "ant/fail";
 	}
 
 	@RequestMapping(value = "/Userinfo/modifyUser.shtml", method = RequestMethod.POST)
@@ -637,9 +681,11 @@ public class DoMainController implements Runnable {
 			@RequestParam(value = "picImage") String picImage, UserInfo vo,
 			UserInfofileVo v1, Model model) {
 		try {
+			UserInfo in = userInfoDao.MaxId();
 			vo.setUserId(CommonUtils.getUUID());
 			vo.setUserName(UserName);
 			vo.setSex(Sex);
+			vo.setPersonNum(in.getPersonNum()+1);
 			vo.setPhoneNum(PhoneNum);
 			vo.setIdcardNum(IdcardNum);
 			vo.setYearNum(YearNum);
@@ -648,9 +694,23 @@ public class DoMainController implements Runnable {
 			vo.setPicImage(picImage);
 			vo.setCreatetime(CommonUtils.getNowDate());
 			vo.setUpdateDate(CommonUtils.getNowDate());
-			ImageUpload(vo, v1);
+			if (v1.getHeadPic().get(0).getSize()<10||v1.
+					getHeadPic().get(1).getSize()<10||v1.
+					getHeadPic().get(2).getSize()<10) {
+				 
+				model.addAttribute("userId", vo.getUserId());
+				 userInfoDao.create(vo);
+				model.addAttribute("info", in);
+				return "ant/success";
+			}
+//			if (v1.getHeadPic().get(0).g) {
+//				
+//			}
+			
+			UserInfo info =  ImageUpload(vo, v1);
 			System.err.println("上传成功！");
 			model.addAttribute("userId", vo.getUserId());
+			model.addAttribute("info", info);
 			return "ant/success";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -828,6 +888,60 @@ public class DoMainController implements Runnable {
 
 	}
 
+	private WorkVideo Video2Upload(WorkVideo vo1, UserInfofileVo vo)
+			throws Exception {
+
+		String newFileName = null;
+try {
+	List<String> image = new ArrayList<>();
+	List<MultipartFile> file = vo.getHeadPic();
+	for (MultipartFile multipartFile : file) {
+
+		if (multipartFile != null &&multipartFile.getSize() > 0) {
+			fileSizeOverrun(multipartFile);
+
+			String originalFileName = multipartFile.getOriginalFilename();
+			newFileName = CommonUtils.getUUID()
+					+ originalFileName.substring(originalFileName
+							.lastIndexOf("."));
+			File picFile = new File("/FILE/images/" + newFileName);
+
+			try {
+				multipartFile.transferTo(picFile);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new RuleException("上传失败");
+			}
+			// write picFile http name into mysql database;
+			newFileName = "http://www.antarchi.com/common/showIcon?fileName="
+					+ newFileName;
+			 
+			image.add(newFileName);
+		}
+	 
+	}
+	String dd = listToString(image, ',');
+	System.err.println(dd);
+	vo1.setFileUrl(listToString(image, ','));
+
+	workVideoDao.createVideo(vo1);
+	// for (int i = 0; i < vo.getCheckIdcardPicUrl().size(); i++) {
+	//
+	// System.err.println(vo.getCheckIdcardPicUrl().get(i));
+	// }
+
+	return vo1;
+
+} catch (UnisException e) {
+	// TODO: handle exception
+}catch (Exception e) {
+	// TODO: handle exception
+}
+return null;
+		
+	}
+	
 	public String listToString(@SuppressWarnings("rawtypes") List list,
 			char separator) {
 		StringBuilder sb = new StringBuilder();
@@ -842,6 +956,7 @@ public class DoMainController implements Runnable {
 			throw new Exception("大小超过10M");
 		}
 	}
+	 
 
 	public void saveNeteaseVideo(String portal) throws InterruptedException {
 		String porType = null;
@@ -1048,11 +1163,13 @@ public class DoMainController implements Runnable {
 	}
 
 	public static void main(String[] args) {
-
-		DoMainController ff = new DoMainController();
-		ff.tets();
-
-		System.err.println(CommonUtils.getUUID());
+		String ff = "http://www.antarchi.com/common/showIcon?fileName=d8acae2d52474aceafd4e4d67f2703ca.jpg,http://www.antarchi.com/common/showIcon?fileName=a0e559b520f04674b67bea178c1e1158.jpg,http://www.antarchi.com/common/showIcon?fileName=b12f57bdafb04a6ba9c27ac11c4cd751.jpg";
+		System.err.println(ff.length());
+//
+//		DoMainController ff = new DoMainController();
+//		ff.tets();
+//
+//		System.err.println(CommonUtils.getUUID());
 	}
 
 }

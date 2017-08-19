@@ -28,5 +28,9 @@
 		<property name="mapperInterface" value="com.service.TestCollect.dao.MyorderInfoDao" />
 	</bean> 
 	
+		<bean id="workVideoDao" class="org.springframework.orm.ibatis3.MapperFactoryBean">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+		<property name="mapperInterface" value="com.service.TestCollect.dao.WorkVideoDao" />
+	</bean> 
 </beans>
 	

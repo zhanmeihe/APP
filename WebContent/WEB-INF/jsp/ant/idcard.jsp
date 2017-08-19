@@ -19,16 +19,25 @@
 <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/common.js"></script>
 <script src="<%=request.getContextPath()%>/js/uploadPreview.js"></script>
-
+<script src="<%=request.getContextPath()%>/js/cover.js"></script>
 
 </head>
 <body>
-
+<script type="text/javascript"> 
+       function doSubmit(){ 
+            var file = document.getElementById('up_img_WU_FILE_2'); 
+            if (file.value == "") { 
+alert("请上传您的身份证照片！"); 
+ 
+ return false;
+} 
+       } 
+</script> 
 	<div class="index">
-		<form action="<%=request.getContextPath()%>/Userinfo/ImageUpage.shtml"
+		<form id="form1" name="form1" action="<%=request.getContextPath()%>/Userinfo/ImageUpage.shtml"
 			method="post" enctype="multipart/form-data"
-			id = "myform" onsubmit="return check();">
-			<div class="g-personal">
+			 onsubmit="return doSubmit();" >
+			<div id = "myform" class="g-personal">
 				<div class="m-bg-id">
 					<div class="g-upload" id="warp">
 						 
@@ -71,13 +80,13 @@
 		function check() {
 			var myform = document.getElementById("myform"); //获得form表单对象
 			for (var i = 0; i < myform.length; i++) { //循环form表单
-				if (myform.elements[i].headPic == "") { //判断每一个元素是否为空
-					alert(myform.elements[i].headPic + "三张图片都不能为空！");
+				if (myform.elements[i].value == "") { //判断每一个元素是否为空
+					alert(myform.elements[i].value + "三张图片都不能为空！");
 					myform.elements[i].focus(); //元素获得焦点
 					return false;
 				}
 			}
-			myform.submit();
+			/* myform.submit(); */
 		}
 	</script>
 	<script type="text/javascript">

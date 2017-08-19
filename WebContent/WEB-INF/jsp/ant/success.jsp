@@ -12,16 +12,16 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <title>注册成功</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-1.10.1.min.js"></script>
-    <script src="js/common.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+    <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/common.js"></script>
 </head>
 <body class="bg-succ">
     <div class="index">
         <div class="g-success">
             <span class="titile">注册成功</span>
-            <p>工人编号：<span>001</span></p>
-            <p class="name"><span>xxx</span>师傅</p>
+            <p>工人编号：<span>${info.personNum }</span></p>
+            <p class="name"><span>${info.userName}</span>师傅</p>
             <div>欢迎加入蚂蚁阿奇</div>
             <div>施工时必须穿工服</div>
             <div>领取工服请联系工程负责人</div>

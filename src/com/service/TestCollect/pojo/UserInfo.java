@@ -15,6 +15,16 @@ public class UserInfo implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	private int personNum;
+	
+	public int getPersonNum() {
+		return personNum;
+	}
+
+	public void setPersonNum(int personNum) {
+		this.personNum = personNum;
+	}
+
 	private String createtime;
 	
 	private String updateDate;

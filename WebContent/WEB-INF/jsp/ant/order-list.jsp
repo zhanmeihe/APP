@@ -24,10 +24,7 @@ $(document).ready(function(){
 	   if (skin<=0 ) {
 		alert("不好意思，新发布的任务已被抢完！");
 		history.go(-1);
-	 
-	}
- 
-	 
+	};
 });
 
 </script>

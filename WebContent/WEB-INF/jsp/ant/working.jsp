@@ -18,17 +18,17 @@
     <script src="<%=request.getContextPath()%>/js/common.js"></script>
 </head>
 	
-<!-- <script type="text/javascript">
+ <script type="text/javascript">
 $(document).ready(function(){
 	 var skin = ${skin};//获取input的节点
 	   if (skin<=0 ) {
 		alert("您还没有订单或正在施工的任务！");
 		history.go(-1);
 		 
-	}
+	};
  
 	 
-}); -->
+}); 
 
 </script>
 <body class="">

@@ -107,6 +107,11 @@
         $('.on-shou').on('click', function() {
             formValidate();
         });
+        
+        
+    </script>
+    <script type="text/javascript">
+    document.getElementById("checkbox").checked;
     </script>
 </body>
 </html>

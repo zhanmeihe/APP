@@ -35,7 +35,7 @@
                 <p>2,</p>
                 <p>3,</p>
             </div>
-            <div class="g-field fanhui-index"><a href="<%=request.getContextPath()%>/Userinfo/PersonalCenter.shtml/${userId}">确定</a></div>
+            <div class="g-field fanhui-index"><a href="<%=request.getContextPath()%>/Userinfo/workclock.shtml/${userId}/${taskId}">确定</a></div>
         </div>
     </div>
 </body>

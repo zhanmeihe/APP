@@ -50,6 +50,14 @@ function formValidate() {
         $('.identity').focus();
         return false;
     }
+    /**
+     * 公种
+     */
+    else if ($('input:checkbox[name="WorkType"]:checked').val()==null){
+		alert("请选择工种!");
+		return false;
+		 
+	}
     //xingbie
     else if($('input:radio[name="identity"]:checked').val()==null){
         alert("请选择性别!");
@@ -57,7 +65,7 @@ function formValidate() {
     }else {
         window.location.href = "/APP/Userinfo/Idcard.shtml";
     }
-    // 如果没有错误则提交
+    // 如果没有错误则提交 
 }
 
 function formValidatemodify() {
@@ -95,6 +103,8 @@ function formValidatemodify() {
         window.location.href = "/Userinfo/Idcard.shtml";
     }
     // 如果没有错误则提交
+    
+    
 }
 //function Validateimg() {
 //	 if ($.trim($('.headPic').val()).length == 0) {
@@ -106,3 +116,8 @@ function formValidatemodify() {
 //	}
 //	
 //}
+function formValidaPic() {
+    // 判断名称
+	var ff = document.getElementsByName("'headPic");
+	alert(ff[1].value);
+}

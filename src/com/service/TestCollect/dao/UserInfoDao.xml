@@ -19,7 +19,7 @@
 		<result column="YEAR_NUM" property="yearNum" />
 		<result column="CREATE_DATE" property="createtime" />
 		<result column="UPDATE_DATE" property="updateDate" />
-		
+		<result column="PERSON_NUM" property="personNum" />
 		
 	</resultMap>
  
@@ -29,7 +29,7 @@
 			PARAMETER_S.nextval from dual </selectKey> -->
 
 		insert into user_info
-		(USER_ID,USER_NAME,OPEN_ID,BANK_CARD,SEX,ADDRESS,WORK_TYPE,INTRODUCER,IDCARD_NUM,PHONE_NUM,IMAGE_URL,IDCARD_URL,YEAR_NUM,CREATE_DATE)
+		(USER_ID,USER_NAME,OPEN_ID,BANK_CARD,SEX,ADDRESS,WORK_TYPE,INTRODUCER,IDCARD_NUM,PHONE_NUM,IMAGE_URL,IDCARD_URL,YEAR_NUM,CREATE_DATE,PERSON_NUM)
 		values (
 
 		#{ userId, javaType=String,
@@ -66,7 +66,10 @@
 		jdbcType=VARCHAR},
 		#{ createtime,
 		javaType=String,
-		jdbcType=VARCHAR}
+		jdbcType=VARCHAR},
+		#{ personNum,
+		javaType=int,
+		jdbcType=INTEGER}
 		)
 	</insert>
 	
@@ -88,6 +91,12 @@
 	<select id="queryId" resultMap="BaseResultMap" parameterType="String">
 		select *
 		from user_info where OPEN_ID=#{openId} or USER_ID=#{userId}
+		 
+	</select>
+	
+	<select id="MaxId" resultMap="BaseResultMap" parameterType="String">
+		select MAX(PERSON_NUM) personNum
+		from user_info where 1=1
 		 
 	</select>
 
