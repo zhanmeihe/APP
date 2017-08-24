@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -281,10 +283,14 @@ public class DoMainController implements Runnable {
 				UserInfo info = new UserInfo();
 				info = userInfoDao.queryId(snsUserInfo.getOpenId(),
 						null);
+				HttpSession session = request.getSession();
 				// userInfoDao.queryId("a78bef1e17804fa68c412b6fcb39385e");
 				if (info != null) {
+					
+//					request.getSession().setAttribute("name",info.getOpenid());
 					model.addAttribute("user", info);
 					model.addAttribute("idcardNum", info.getIdcardNum());
+					session.setAttribute("userInfo", info);
 					return "ant/personal-center";
 				} else {
 					model.addAttribute("snsUserInfo", snsUserInfo);
@@ -310,19 +316,21 @@ public class DoMainController implements Runnable {
 	 */
 	@RequestMapping(value = "/Userinfo/testlocal.shtml/{userId}", method = RequestMethod.GET)
 	public String Test(@PathVariable("userId") String userId,
-			HttpServletRequest request, HttpServletResponse response,
+			HttpServletRequest request, HttpServletResponse response,HttpSession session,
 			Model model, Configure conf) {
 		try {
 			// 59320f39375c463b8b08d1095d5027c1
 			String ss = "123";
 			if (!"authdeny".equals(ss)) {
-
+ 
 				UserInfo dd = userInfoDao.MaxId();
 				System.out.println(dd.getPersonNum());
 				UserInfo info = new UserInfo();
 				info = userInfoDao.queryId(null, userId);
 				if (info != null) {
 					model.addAttribute("user", info);
+					HttpSession httpSession =request.getSession();
+					httpSession.setAttribute("username", "张三");
 					model.addAttribute("idcardNum", info.getIdcardNum());
 					return "ant/personal-center";
 				} else {
@@ -345,8 +353,9 @@ public class DoMainController implements Runnable {
 	 * @return
 	 */
 	@RequestMapping(value = "/MapAddress/GpsAddress.shtml/{AddressName}", method = RequestMethod.GET)
-	public String IndexIdcArd(@PathVariable("AddressName") String AddressName,Model model) {
+	public String IndexIdcArd(@PathVariable("AddressName") String AddressName,Model model,HttpSession session) {
 		try {
+		 
 			model.addAttribute("Addressinfo", AddressName);
 			return "ant/map";
 		} catch (UnisException e) {
@@ -365,9 +374,16 @@ public class DoMainController implements Runnable {
 	@RequestMapping(value = "/Userinfo/orderlist.shtml/{userId}", method = RequestMethod.GET)
 	public String OrderList(@PathVariable("userId") String userId,
 			HttpServletRequest request, HttpServletResponse response,
-			Model model) {
+			Model model,HttpSession session) {
 		try {
-
+			HttpSession httpSession =request.getSession();
+			//httpSession.setMaxInactiveInterval(60);
+			if (httpSession.getAttribute("username")!=null) {
+				System.err.println("有session的，session userId等于"+httpSession.getAttribute("username"));
+				model.addAttribute("username", httpSession.getAttribute("username"));
+			}else {
+				System.err.println("没有获取到session");
+			}
 			if (userId != null) {
 				List<TaskInfo> info = taskInfoDao.selectInfo();
 				model.addAttribute("task", info);
@@ -505,31 +521,44 @@ public class DoMainController implements Runnable {
 		String userId = request.getParameter("userId");
 		try {
 			if (taskid!=null && userId!=null ) {
-				TaskInfo taskup = new TaskInfo();
-				taskup.setOrderState(1);
-				taskup.setId(taskid);
-				taskup.setUpdateDate(CommonUtils.getNowDate());
-				taskInfoDao.updateTaskInfo(taskup);
-				MyorderInfo order = new MyorderInfo();
 				TaskInfo task = taskInfoDao.findId(taskid);
-				order.setCreateTime(CommonUtils.getNowDate());
-				order.setTaskId(taskid);
-				order.setUserId(userId);
-				order.setListIng(task.getListIng());
-				order.setProductionNum(task.getProductionNum());
-				order.setSalaryNum(task.getSalaryNum());
-				order.setState(2);
-				order.setTaskAddress(task.getTaskAddress());
-				order.setTaskDate(task.getTaskDate());
-				order.setTaskInstruction(task.getTaskInstruction());
-				order.setUpdateDate(CommonUtils.getNowDate());
-				myorderInfoDao.createTask(order);
-				
-				model.addAttribute("userId", userId);
-				model.addAttribute( "taskId",order.getTaskId());
-				return "ant/successorders";
+				UserInfo user = userInfoDao.queryId(null, userId);
+				String[] userList = user.getWorkType().split(",");
+				String[] list = task.getListIng().split(",");
+				Arrays.sort(userList);
+				Arrays.sort(list);
+				if (Arrays.equals(userList, list)) {
+					
+					TaskInfo taskup = new TaskInfo();
+					taskup.setOrderState(1);
+					taskup.setId(taskid);
+					taskup.setUpdateDate(CommonUtils.getNowDate());
+					taskInfoDao.updateTaskInfo(taskup);
+					MyorderInfo order = new MyorderInfo();
+					
+					order.setCreateTime(CommonUtils.getNowDate());
+					order.setTaskId(taskid);
+					order.setUserId(userId);
+					order.setListIng(task.getListIng());
+					order.setProductionNum(task.getProductionNum());
+					order.setSalaryNum(task.getSalaryNum());
+					order.setState(2);
+					order.setTaskAddress(task.getTaskAddress());
+					order.setTaskDate(task.getTaskDate());
+					order.setTaskInstruction(task.getTaskInstruction());
+					order.setUpdateDate(CommonUtils.getNowDate());
+					myorderInfoDao.createTask(order);
+					
+					model.addAttribute("userId", userId);
+					model.addAttribute( "taskId",order.getTaskId());
+					return "ant/successorders";
+				}else {
+					model.addAttribute("userId", userId);
+					return "ant/fail";
+				}
+			
 			}else {
-				
+				model.addAttribute("userId", userId);
 				return "ant/index";
 			}	
 		} catch (UnisException e) {
@@ -537,6 +566,7 @@ public class DoMainController implements Runnable {
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
+		model.addAttribute("userId", userId);
 		return "ant/fail";
 		
 	}
@@ -1163,8 +1193,17 @@ return null;
 	}
 
 	public static void main(String[] args) {
-		String ff = "http://www.antarchi.com/common/showIcon?fileName=d8acae2d52474aceafd4e4d67f2703ca.jpg,http://www.antarchi.com/common/showIcon?fileName=a0e559b520f04674b67bea178c1e1158.jpg,http://www.antarchi.com/common/showIcon?fileName=b12f57bdafb04a6ba9c27ac11c4cd751.jpg";
-		System.err.println(ff.length());
+	 String[] aa = {"搜索","得到","恩恩"};
+	 String[] bb = {"搜索","恩恩","得到"};
+	 Arrays.sort(aa);
+	 Arrays.sort(bb);
+	 if (Arrays.equals(aa, bb)) {
+		 System.out.println(aa);
+		 System.out.println(bb);
+		System.err.println("ok");
+	}else {
+		System.err.println("no");
+	}
 //
 //		DoMainController ff = new DoMainController();
 //		ff.tets();

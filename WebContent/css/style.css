@@ -24,7 +24,7 @@ body{font-family: "Microsoft YaHei";}
 }
 .g-index-bg .join {
     position: absolute;
-    bottom: 1rem;
+    bottom: 2rem;
     left: 1rem;
     font-size: .3rem;
 }
@@ -75,9 +75,6 @@ body{font-family: "Microsoft YaHei";}
 }
 .m-name .gender label {
     margin-right: .7rem;
-}
-.m-name .gender input {
-    vertical-align: text-top;
 }
 .m-name .type-work div {
     padding-left: .5rem;

@@ -21,7 +21,7 @@
         <div class="g-success">
             
             <div>原因：工种不符</div>
-            <div class="g-field fanhui-index fail-suc"><a href="javascript:;">确定</a></div>
+            <div class="g-field fanhui-index fail-suc"><a href="<%=request.getContextPath()%>/Userinfo/orderlist.shtml/${userId}">确定</a></div>
         </div>
     </div>
 </body>

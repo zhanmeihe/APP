@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ page import = "javax.servlet.http.HttpServletRequest"%>
+	
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,9 +28,22 @@ $(document).ready(function(){
 		history.go(-1);
 	};
 });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+var rs = ${username};
+var sessionValue = session.getAttribute("username");//这里写你后台传出来的key
+ var test = $(sessionValue);
+   //这里判断一下
+  if(sessionValue =="" || sessionValue ==null){
+    alert("登录失效，稍等返回首页！");
+    window.location.href = "<%=request.getContextPath()%>/index.jsp";
+  };
+});
 
 </script>
-<body class="">
+<body class=""  oninit() = "onLoad()">
     <div class="index">
         <div class="g-order-list">
             

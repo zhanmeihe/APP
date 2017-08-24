@@ -7,6 +7,9 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	<session-config>
+      <session-timeout>1</session-timeout>
+</session-config>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/unis-context.xml</param-value>
@@ -50,4 +53,5 @@
 		<filter-name>charEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 </web-app>
