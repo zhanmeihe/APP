@@ -150,8 +150,8 @@ public class CommonUtils {
 
 		// System.out.println(new Date().getTime()/1000L);
 
-		System.out.println(getCurrentTime());
-
+		//System.out.println(getCurrentTime());
+System.err.println(getNowDate());
 		// for (int i = 0; i <= 2600; i++) {
 		// // System.out.println(CommonUtils.getUUID());
 		//
